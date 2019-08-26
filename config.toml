@@ -1,4 +1,4 @@
-baseURL = "http://icck.github.io"
+baseURL = "https://icck.github.io"
 languageCode = "js"
 title = "My icck Blog"
 theme = "hugo-theme-nix"
