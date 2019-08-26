@@ -1,0 +1,20 @@
+baseURL = "http://icck.github.io"
+languageCode = "js"
+title = "My icck Blog"
+theme = "hugo-theme-nix"
+[params]
+  Name = "Issei Komori"
+  HeaderUsername = "icck"
+  HeaderHostname = "developer"
+  About = "Hi I'm Issei Komori and This is my site. I am a developer. My favorite AWS is AWS Cloud9. Good at Oracle PLSQL. I like animals and sea beasts."
+  ProfilePicture = "https://avatars1.githubusercontent.com/u/25297490?s=400&u=ee745726ed471ba6ed4c62072dc600113f490fc8&v=4"
+  GithubID = "icck"
+  TwitterID = "icckx"
+  FacebookID = "issei.komori"
+  InstagramID = "issey.kom"
+
+[menu]
+  [[menu.header]]
+    name = "posts"
+    weight = 0
+    url = "/posts"
