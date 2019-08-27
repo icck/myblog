@@ -2,7 +2,6 @@ baseURL = "https://icck.github.io"
 languageCode = "js"
 title = "My icck Blog"
 theme = "hugo-theme-nix"
-googleAnalytics = "UA-126514155-2"
 
 [params]
   Name = "Issei Komori"
@@ -14,6 +13,7 @@ googleAnalytics = "UA-126514155-2"
   TwitterID = "icckx"
   FacebookID = "issei.komori"
   InstagramID = "issey.kom"
+  googleAnalytics = "UA-126514155-2"
 
 [menu]
   [[menu.header]]
