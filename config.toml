@@ -20,3 +20,7 @@ theme = "hugo-theme-nix"
     name = "posts"
     weight = 0
     url = "/posts"
+  [[menu.header]]
+    name = "tags"
+    weight = 0
+    url = "/tags"
