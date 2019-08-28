@@ -18,9 +18,13 @@ theme = "hugo-theme-nix"
 [menu]
   [[menu.header]]
     name = "posts"
-    weight = 0
+    weight = 10
     url = "/posts"
   [[menu.header]]
     name = "tags"
-    weight = 0
+    weight = 20
     url = "/tags"
+  [[menu.header]]
+    name = "search"
+    weight = 30
+    url = "/search"
