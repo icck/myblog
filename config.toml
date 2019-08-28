@@ -17,6 +17,10 @@ theme = "hugo-theme-nix"
 
 [menu]
   [[menu.header]]
+    name = "about"
+    weight = 10
+    url = "/about"
+  [[menu.header]]
     name = "posts"
     weight = 10
     url = "/posts"
