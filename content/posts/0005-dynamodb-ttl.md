@@ -2,7 +2,7 @@
 author: "Issei Komori"
 title: "Dynamodb TTL(Time to Live、データを自動削除する機能)を使ってみた"
 date: 2019-09-01T09:17:57+09:00
-draft: true
+draft: false
 tags: ["AWS","DynamoDB"]
 weight: 10
 ---
