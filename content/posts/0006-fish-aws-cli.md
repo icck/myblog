@@ -2,7 +2,7 @@
 author: "Issei Komori"
 title: "fishでaws-cliの補完機能を使う"
 date: 2019-09-02T02:17:32+09:00
-draft: true
+draft: false
 tags: ["AWS","fish","aws-cli"]
 weight: 10
 ---
