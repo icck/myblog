@@ -1,6 +1,6 @@
 baseURL = "https://icck.github.io"
 languageCode = "js"
-title = "My icck Blog"
+title = "icck's Blog"
 theme = "hugo-theme-nix"
 
 [params]

@@ -1,8 +1,32 @@
 ---
 author: "Issei Komori"
 title: "About"
-date: 2019-08-28T23:32:26+09:00
+date: 2019-09-02T23:34:26+09:00
 menu: "main"
 ---
 
-# 準備中
+# About Me
+~~~
+{
+  "名前": "Issei Komori",
+  "よく書くこと": [
+    "AWS",
+    "気になったツール"
+  ],
+  "資格": [
+    "SAA",
+    "Oracle Silver",
+    "Java Silver"
+  ],
+  "スキル": [
+    "AWS",
+    "Java",
+    "SQL-Oracle"
+  ],
+  "SNS": [
+    "Github: https://twitter.com/icckx",
+    "Qiita: https://qiita.com/icck",
+    "Twitter: @icckx"
+  ]
+}
+~~~
