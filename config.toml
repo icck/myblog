@@ -2,6 +2,7 @@ baseURL = "https://icck.github.io"
 languageCode = "js"
 title = "icck's Blog"
 theme = "hugo-theme-nix"
+disqusShortname = "https-icck-github-io"
 
 [params]
   Name = "Issei Komori"
