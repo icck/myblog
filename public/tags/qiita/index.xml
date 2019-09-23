@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Qiita on icck&#39;s Blog</title>
+    <link>https://icck.github.io/tags/qiita/</link>
+    <description>Recent content in Qiita on icck&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>js</language>
+    <lastBuildDate>Tue, 17 Sep 2019 23:00:33 +0900</lastBuildDate>
+    
+	<atom:link href="https://icck.github.io/tags/qiita/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Qiita API②いいねとVIEW数をLambdaで取得してS3へ保存</title>
+      <link>https://icck.github.io/posts/0010-qiita-python/</link>
+      <pubDate>Tue, 17 Sep 2019 23:00:33 +0900</pubDate>
+      
+      <guid>https://icck.github.io/posts/0010-qiita-python/</guid>
+      <description>前回投稿した「Qiita API でいいねとVIEW数をCurlで取得する方法」を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。
+Code 以下のコードを実行しs3に格納していきます。
+※事前にバケットは作成しておきます。
+import csv import json import logging import os import sys import boto3 import requests formatter = &amp;#39;%(asctime)s%(name)-12s%(levelname)-8s%(message)s&amp;#39; logging.basicConfig(level=logging.WARNING, format=formatter) logger = logging.getLogger(__name__) def get_next_url(response): link = response.headers[&amp;#39;link&amp;#39;] if link is None: return None links = link.split(&amp;#39;,&amp;#39;) for link in links: if &amp;#39;rel=&amp;#34;next&amp;#34;&amp;#39; in link: return link[link.find(&amp;#39;&amp;lt;&amp;#39;) + 1:link.find(&amp;#39;&amp;gt;&amp;#39;)] return None def get_items(token): url = &amp;#39;https://qiita.com/api/v2/authenticated_user/items&amp;#39; headers = {&amp;#39;Authorization&amp;#39;: &amp;#39;Bearer {}&amp;#39;.format(token)} items = [] while True: response = requests.</description>
+    </item>
+    
+    <item>
+      <title>Qiita API でいいねとVIEW数をCurlで取得する方法</title>
+      <link>https://icck.github.io/posts/0009-qiita-curl/</link>
+      <pubDate>Sun, 15 Sep 2019 13:39:55 +0900</pubDate>
+      
+      <guid>https://icck.github.io/posts/0009-qiita-curl/</guid>
+      <description>はじめに QiitaにはAPIが用意されています。 私もQiitaに投稿しているのですが、Google Analyticsでは取得しきれない「いいね」の情報が欲しくてCurlで取得する方法を調べてみました。
+APIのドキュメントは以下にあります。
+https://qiita.com/api/v2/docs
+APIを使うための準備 個人の情報を取得するためにはアクセストークンを発行する必要があります。
+https://qiita.com/settings/tokens/new
+にアクセスし、アクセストークンを発行しましょう。
+発行できたら、あとはドキュメントに従ってCurlでデータを取得していきます。
+QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp;#34;Authorization: Bearer ${QIITA_TOKEN}&amp;#34; \  &amp;#34;https://qiita.com/api/v2/authenticated_user/items?page=1&amp;amp;per_page=100&amp;#34; \  | jq -r &amp;#39;.[] | [.likes_count, .title, .id] | @csv&amp;#39; 0,&amp;#34;Session Managerでプライベートサブネット上のEC2にSSHする方法&amp;#34;,&amp;#34;e8dc6b039ef95d7b3d72&amp;#34; 0,&amp;#34;5分でAWS Elastic Beanstalk(作って、修正して、お片付け)&amp;#34;,&amp;#34;e30d62e878b1b2c6f3d7&amp;#34; 2,&amp;#34;CodeBuildでECRビルドエラーから得た4つの知見&amp;#34;,&amp;#34;bcf118a38c2a691a837d&amp;#34; 0,&amp;#34;AWS Cloud9でAWS SAM CLI環境作成～Hello World(Python)まで&amp;#34;,&amp;#34;873721df727943beb52d&amp;#34; 3,&amp;#34;[Docker for Windows]Kubernetesを動かしてみる&amp;#34;,&amp;#34;91eac9da094666e47c62&amp;#34; 0,&amp;#34;Docker for WindowsでEnabled Kubernetesが出来なくてハマったときの解決方法&amp;#34;,&amp;#34;c40eede0bb120d643f2c&amp;#34; 1,&amp;#34;[小ネタ]fishでaws-cliの補完機能を使うための手順&amp;#34;,&amp;#34;e57a86ba65c14a7fbb19&amp;#34; 9,&amp;#34;Dockerでaws-cli環境を作ればアカウント切替が簡単に&amp;#34;,&amp;#34;40545486a342179a5bd3&amp;#34; 7,&amp;#34;Pythonista3でstashを実行しNo module named &amp;#39;urlparse&amp;#39;が出た場合の解決方法&amp;#34;,&amp;#34;a33a3b113dea0b2fa850&amp;#34; 5,&amp;#34;QiitaにGoogleAnalyticsの設定する。数字を眺めて楽しい&amp;#34;,&amp;#34;56060f8a72863ee05924&amp;#34; 3,&amp;#34;バッチファイルを経由すればPowerShellファイルの実行権限を変えずに指定権限で実行できた&amp;#34;,&amp;#34;60bc30a793a8f4ecdc2b&amp;#34; 27,&amp;#34;Docker for Windowsをインストール後 could not read CA certificateエラーが出た時の解決方法&amp;#34;,&amp;#34;60e1c1f8b6a05c8fdf72&amp;#34; 10,&amp;#34;AWS認定ソリューションアーキテクトアソシエイト合格[2018.04]&amp;#34;,&amp;#34;a1416e818135a424ad89&amp;#34; 2,&amp;#34;[AWS Cloud9]EC2自動停止を検知して別の処理を始める&amp;#34;,&amp;#34;c841fa99af2c88a6d956&amp;#34; 5,&amp;#34;AWS Cloud9でpythonライブラリを含めたLambdaのデプロイ&amp;#34;,&amp;#34;6cc042d2693b84c96905&amp;#34; 16,&amp;#34;AWS Cloud9でLambdaの作成、テスト、デプロイまでの手順まとめ&amp;#34;,&amp;#34;4c2fa4e0bd87ce214c92&amp;#34; 50,&amp;#34;AWS Cloud9を動かしてみた&amp;#34;,&amp;#34;7705ef6871e261d6535e&amp;#34; 1,&amp;#34;Win10 Creators Update後、vagrant upがエラーになったときの解決方法&amp;#34;,&amp;#34;37e3b88c657b4e4cdb51&amp;#34; 11,&amp;#34;SNSでSlack投稿&amp;#34;,&amp;#34;75f484cd3ccd944cd4c2&amp;#34; VIEW数は記事単位でしか取得できないようです。（nullが取得されてしまう） プログラムで記事をループしてVIEW数を取得する必要がありそうですね。</description>
+    </item>
+    
+  </channel>
+</rss>

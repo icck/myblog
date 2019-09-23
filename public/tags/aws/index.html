@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="js">
+
+	<head>
+		<title> AWS &middot; icck&#39;s Blog </title>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.58.3" />
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://icck.github.io/css/nix.css">
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Inconsolata%7COpen+Sans%7CConcert+One" rel="stylesheet">
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-126514155-2', 'auto');
+	  ga('send', 'pageview');
+
+</script>
+
+
+
+
+	</head>
+
+	<body>
+		<header>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" id="green-terminal" href=https://icck.github.io>icck@developer ~ $</a>
+		</div>
+
+		
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="https://icck.github.io">/home/icck</a>
+				</li>
+				
+				
+				<li class="dropdown">
+                    
+            		<a href="/about">~/about</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/posts">~/posts</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/tags">~/tags</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/search">~/search</a>
+            		
+        		</li>
+        		
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+
+		<div class="container wrapper">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1 id=>AWS</h1>
+				</div>
+			</div>
+			<ul id="post-list">
+                	
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/0010-qiita-python/">Qiita API②いいねとVIEW数をLambdaで取得してS3へ保存</a></h4>
+							<h4 class="post-date">Sep 17, 2019</h4>
+						</div>
+						<div class="post-summary"><p>前回投稿した「Qiita API でいいねとVIEW数をCurlで取得する方法」を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。
+Code 以下のコードを実行しs3に格納していきます。
+※事前にバケットは作成しておきます。
+import csv import json import logging import os import sys import boto3 import requests formatter = &#39;%(asctime)s%(name)-12s%(levelname)-8s%(message)s&#39; logging.basicConfig(level=logging.WARNING, format=formatter) logger = logging.getLogger(__name__) def get_next_url(response): link = response.headers[&#39;link&#39;] if link is None: return None links = link.split(&#39;,&#39;) for link in links: if &#39;rel=&#34;next&#34;&#39; in link: return link[link.find(&#39;&lt;&#39;) + 1:link.find(&#39;&gt;&#39;)] return None def get_items(token): url = &#39;https://qiita.com/api/v2/authenticated_user/items&#39; headers = {&#39;Authorization&#39;: &#39;Bearer {}&#39;.format(token)} items = [] while True: response = requests.</p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/0010-qiita-python/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/0007-codecommit/">AWS CodeCommitの作成、プルリクエストまでの方法</a></h4>
+							<h4 class="post-date">Sep 6, 2019</h4>
+						</div>
+						<div class="post-summary"><p>Codeシリーズはまずは使ってみる！ 
+AWSにはCodeXXXと名前がついているDeveloperツールがいくつかあります。
+それらは単体でも使えますが、組み合わせて利用することが多いです。
+↓
+難しく考えず手を動かすことで、手っ取り早く感覚を掴んでいくのが学習しやすいです
+本記事では、リポジトリの作成、コミット&amp;プッシュ、プルリクエストの3つを動かして行きます
+概要（最低限）  ソースコードを管理するGitリポジトリサービス サードパーティ(SourceTreeなど)利用可能 プルリクエスト機能が利用可能  リポジトリの作成  リポジトリ名を入れて、作成ボタン ＞ 完成！！ はじめにマネジメントコンソールでCodeCommitを選択しリポジトリを作成します。 名前を選択するだけ、簡単ですね。   次にgitを使う端末で設定をしていきます。 今回はAWS CLIを設定していることが前提になります。  git config --global credential.helper &#39;!aws --region ap-northeast-1 codecommit credential-helper $@&#39; git config --global credential.UseHttpPath true git clone [URLのクローン] コミット&amp;プッシュしてみる  通常のgitと同様の利用方法が使えることを確認します。  $ echo &#34;hello codecommit!&#34; &gt; README.md $ git add -A $ git commit -m &#34;add readme&#34; $ git push origin master  コミットされたことを確認しました。  プルリクエストしてみる  ブランチを作成しファイルを修正、コミット%プッシュします。  (master) $ git checkout -b f1 (f1) $ echo &#34;f1 add&#34; &gt;&gt; README.</p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/0007-codecommit/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/0006-fish-aws-cli/">fishでaws-cliの補完機能を使う</a></h4>
+							<h4 class="post-date">Sep 2, 2019</h4>
+						</div>
+						<div class="post-summary"><p>bash -&gt; fishに変更した場合、aws-cliの補完機能を有効にする方法 # 位置を特定します $ which aws_completer # 存在しない場合は作成します $ vim ~/.config/fish/config.fish # aws_completerのパスはwhichで調べたパスに適時変更しconfig.fishに追記して保存します $ complete -c aws -f -a &#39;(begin; set -lx COMP_SHELL fish; set -lx COMP_LINE (commandline); /usr/local/bin/aws_completer; end)&#39; #確認 $ aws s + tab さいごに これで、良いfish Lifeを過ごせます。</p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/0006-fish-aws-cli/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/0005-dynamodb-ttl/">Dynamodb TTL(Time to Live、データを自動削除する機能)を使ってみた</a></h4>
+							<h4 class="post-date">Sep 1, 2019</h4>
+						</div>
+						<div class="post-summary"><p>TTLとは  レコード毎にデータの有効期限を指定でき、その有効期限を過ぎるとデータが自動削除される機能です  利用例  低アクセスデータをアーカイブTBLへ移動  メインTBLと同定義、キャパシティーだけ下げてOLDデータを保存  低アクセスデータを削除  削除時にトリガーして、LOGを残す  トリガーさせるにはStreamの有効化が必要  TTL詳細  TTL の有効化  カラムで指定した有効期限を過ぎると、自動でデータが消える 変更が完全に処理されるまでに最大で 1 時間かかる  TTL 属性  項目の TTL タイムスタンプを保存する DynamoDB 属性の名前  有効期限はNumber型のエポック時間(Unixtime（ミリ秒無し）)を指定  現在の時間を、項目の Time To Live 属性に保存されている時間と比較 属性に保存されているエポック時間の値が現在の時間よりも少ない場合、項目は期限切れとマークされ、その後に削除される  データは48時間以内に削除される  リアルタイム性が重要でない場合（48時間後に消えてもOKな場合）は、とても有効な機能  スループットは消費せず、データ容量が減らせる  エポック時間形式(Unixtime)  コンピューターシステム上での時刻表現の一種 UNIXエポック、すなわち協定世界時 (UTC) での1970年1月1日午前0時0分0秒から形式的な経過秒数（すなわち、実質的な経過秒数から、その間に挿入された閏秒を引き、削除された閏秒を加えたもの） 現在時刻からエポック時間を取得する方法  Linux ターミナル: date +%s Python: import time; long(time.time()) Java: System.currentTimeMillis() / 1000L JavaScript: Math.</p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/0005-dynamodb-ttl/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/2019-08-31/">DynamoDBでSparse Indexesを利用するテクニック</a></h4>
+							<h4 class="post-date">Aug 31, 2019</h4>
+						</div>
+						<div class="post-summary"><p> Sparse Indexesとは  DynamoDBのデータ抽出アプローチのテクニックの１つ 特定Itemにしか設定していない項目にGSIを含めることでプライマリーキー、ソートキー以外のキーでデータ抽出を容易に 以下の悩みを解決（プライマリーキー、ソートキー以外のキーでデータ抽出）  scanだと高コスト、キーで検索しても高コスト、フィルターだとキー検索とコスト一緒   サンプル: gameから最優秀賞を取得 初期テーブル  game単位で最優秀スコアのデータを取得したい scoreの最優秀をawdという項目を用意。対象以外は項目を設定しない   awdを含めたグローバルセカンダリインデックスを作成 GSIを検索  最優秀賞が設定されている項目が少ないため、VIEWが出来た時点で絞り込まれている scanしても低コスト！←今回の一番のポイント  aws dynamodb scan --table-name game --index-name name-awd-index { &#34;Count&#34;: 1, &#34;Items&#34;: [ { &#34;score&#34;: { &#34;S&#34;: &#34;3&#34; }, &#34;id&#34;: { &#34;S&#34;: &#34;user3&#34; }, &#34;awd&#34;: { &#34;S&#34;: &#34;cp&#34; }, &#34;name&#34;: { &#34;S&#34;: &#34;game1&#34; } } ], &#34;ScannedCount&#34;: 1, &#34;ConsumedCapacity&#34;: null } </p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/2019-08-31/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/2019-08-29/">DynamoDBをaws cliで操作する</a></h4>
+							<h4 class="post-date">Aug 29, 2019</h4>
+						</div>
+						<div class="post-summary"><p>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い  key-schema  HASH パーティションキー RANGE ソートキー  provisioned-throughput  ReadCapacityUnits 読み込みスループット WriteCapacityUnits 書き込みスループット   put-item aws dynamodb put-item \  --table-name mails \  --item &#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.mail&#34;} }&#39; \  --return-consumed-capacity TOTAL { &#34;ConsumedCapacity&#34;: { &#34;CapacityUnits&#34;: 1.</p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/2019-08-29/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+			</ul>
+            
+
+
+
+			<div class="push"></div>
+		</div>
+		<footer class="footer text-center">
+<p>Copyright &copy; 2019 Issei Komori -
+<span class="credit">
+	Powered by
+	<a target="_blank" href="https://gohugo.io">Hugo</a>
+	and
+	<a target="_blank" href="https://github.com/LordMathis/hugo-theme-nix/">Nix</a> theme.
+</span>
+</p>
+</footer>
+
+	</body>
+</html>
