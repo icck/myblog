@@ -32,3 +32,8 @@ git submodule add git @github.com:icck/icck.github.io.git public
 ~~~
 
 - set ssh key
+
+./git/config
+~~~
+url = https://username:password@github.com....
+~~~
