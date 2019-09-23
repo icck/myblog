@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on icck&#39;s Blog</title>
+    <link>https://icck.github.io/pages/</link>
+    <description>Recent content in Pages on icck&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>js</language>
+    <lastBuildDate>Wed, 28 Aug 2019 22:01:57 +0900</lastBuildDate>
+    
+	<atom:link href="https://icck.github.io/pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>全文検索</title>
+      <link>https://icck.github.io/search/</link>
+      <pubDate>Wed, 28 Aug 2019 22:01:57 +0900</pubDate>
+      
+      <guid>https://icck.github.io/search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://icck.github.io/index.js</link>
+      <pubDate>Wed, 28 Aug 2019 21:50:35 +0900</pubDate>
+      
+      <guid>https://icck.github.io/index.js</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
