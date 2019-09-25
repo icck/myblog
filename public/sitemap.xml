@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://icck.github.io/posts/0012-oracle-curerror/</loc>
+    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://icck.github.io/posts/0011-wsl/</loc>
     <lastmod>2019-09-24T00:01:11+09:00</lastmod>
   </url>
@@ -59,17 +64,27 @@
   
   <url>
     <loc>https://icck.github.io/</loc>
-    <lastmod>2019-09-24T00:01:11+09:00</lastmod>
+    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://icck.github.io/tags/oracle/</loc>
+    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://icck.github.io/tags/pl/sql/</loc>
+    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://icck.github.io/posts/</loc>
-    <lastmod>2019-09-24T00:01:11+09:00</lastmod>
+    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://icck.github.io/tags/</loc>
-    <lastmod>2019-09-24T00:01:11+09:00</lastmod>
+    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
   </url>
   
   <url>

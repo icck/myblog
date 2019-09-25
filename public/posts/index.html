@@ -113,6 +113,19 @@ ga('create', 'UA-126514155-2', 'auto');
 				<li>
 					<div class="post-list-item">
 						<div class="post-header">
+							<h4 class="post-link"><a href="https://icck.github.io/posts/0012-oracle-curerror/">[調査方法]Oracle ORA-01000 最大オープン・カーソル数を超えました。[V$OPEN_CURSOR]</a></h4>
+							<h4 class="post-date">Sep 26, 2019</h4>
+						</div>
+						<div class="post-summary"><p> Oracle ORA-01000 最大オープン・カーソル数を超えました。  Oracle(PLSQL)でカーソルに関するエラーが発生しハマったときの対処方法メモ 原因としてはカーソルを「オープン」と「クローズ」の数の不一致  私の場合は、オープンがループ内で行われており、クローズはループの外にあったためオープンし過ぎでエラーになりました。   調査方法 1.カーソルの最大数を確認します。  これが小さすぎるのが原因の場合はSet文でOracleの設定変更しましょう。  show parameters open_cursors; 2.カーソルの数を確認します。  私はブレークポイントデバッグを行いながらcount(1)の増加を確認しプログラムによるカーソル増加を特定しました。 自分が動作させているプログラムと確定している場合はuser_nameを条件に設定します。 具体的なプログラム名を特定するにはsidから調査します。  select sid , user_name , count(1) from V$OPEN_CURSOR group by sid, user_name having count(1) &gt; 10 -- ここは最大数に応じて調整  ; さいごに  明示的にオープン、フェッチ、クローズをコードに記載すると通常処理はもちろんエラー処理での適切なクローズを求められます。 暗黙、明示どちらでもよいですが、FORループを利用してコードを記述したほうがバグのリスクを減らすことが出来るためオススメだと思っています。  </p></div>
+						<div class="post-list-footer text-center">
+							<a href="https://icck.github.io/posts/0012-oracle-curerror/">Read More</a>
+						</div>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post-list-item">
+						<div class="post-header">
 							<h4 class="post-link"><a href="https://icck.github.io/posts/0011-wsl/">WSLの設定</a></h4>
 							<h4 class="post-date">Sep 24, 2019</h4>
 						</div>
@@ -240,21 +253,6 @@ AWSにはCodeXXXと名前がついているDeveloperツールがいくつかあ�
 						<div class="post-summary"><p>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い  key-schema  HASH パーティションキー RANGE ソートキー  provisioned-throughput  ReadCapacityUnits 読み込みスループット WriteCapacityUnits 書き込みスループット   put-item aws dynamodb put-item \  --table-name mails \  --item &#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.mail&#34;} }&#39; \  --return-consumed-capacity TOTAL { &#34;ConsumedCapacity&#34;: { &#34;CapacityUnits&#34;: 1.</p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/2019-08-29/">Read More</a>
-						</div>
-					</div>
-				</li>
-			
-				<li>
-					<div class="post-list-item">
-						<div class="post-header">
-							<h4 class="post-link"><a href="https://icck.github.io/posts/2019-08-28/">Hugoに全文検索機能を追加する</a></h4>
-							<h4 class="post-date">Aug 28, 2019</h4>
-						</div>
-						<div class="post-summary"><p>完成したもの まずは動いているものは以下になります。
-https://icck.github.io/search/
-作業手順  手順を順に記載していきます。以下の記事を参考にさせていただきました。 http://rs.luminousspice.com/hugo-site-search/ https://snap.textgh.org/post/full-text-search-in-hugo/  インデックスファイルのテンプレート $ mkdir ./layouts/js $ touch ./layouts/js/single.html var data = [{{ range $index, $page := where .Site.Pages &#34;Section&#34; &#34;posts&#34;}} {{ if ne $index 0 }},{{ end }}{ url: &#34;{{ $page.Permalink }}&#34;, title: &#34;{{ $page.Title }}&#34;, content: &#34;{{ .PlainWords }}&#34; }{{ end }}]  インデックスファイルを生成する空の投稿 $ hugo new pages/indexjs.md --- date: 2019-08-28T21:50:35+09:00 type: &#34;js&#34; url: &#34;index.js&#34; --- 検索ページの作成 検索ページテンプレートの作成 $ mkdir .</p></div>
-						<div class="post-list-footer text-center">
-							<a href="https://icck.github.io/posts/2019-08-28/">Read More</a>
 						</div>
 					</div>
 				</li>

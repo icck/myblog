@@ -2,7 +2,7 @@
 author: "Issei Komori"
 title: "[調査方法]Oracle ORA-01000 最大オープン・カーソル数を超えました。[V$OPEN_CURSOR]"
 date: 2019-09-26T00:12:50+09:00
-draft: true
+draft: false
 tags: ["Oracle",'PL/SQL']
 weight: 10
 ---
