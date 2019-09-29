@@ -5,7 +5,7 @@
         <title> {{ .Title }} &middot; {{ .Site.Title }} </title>
 
         {{ partial "head.html" . }}
-
+        <script data-ad-client="ca-pub-7114190004214140" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </head>
 
     <body>
@@ -22,18 +22,6 @@
                 {{ template "_internal/disqus.html" . }}
             </div>
             {{ end }}
-
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- 広告1 -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7114190004214140"
-                data-ad-slot="pub-7114190004214140"
-                data-ad-format="auto"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-
             <div class="push"></div>
         </div>
         {{ partial "footer.html" . }}
