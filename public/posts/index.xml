@@ -26,7 +26,7 @@
       <pubDate>Tue, 24 Sep 2019 00:01:11 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/0011-wsl/</guid>
-      <description>WSL(Windows Subsystem for Linux)の設定 前提  WSLが利用可能であること Ubuntu18.04  Setup # 日本からミラーするように sudo sed -i -e &amp;#39;s%http://.*.ubuntu.com%http://ftp.jaist.ac.jp/pub/Linux%g&amp;#39; /etc/apt/sources.list # アップデート sudo apt update -y &amp;amp;&amp;amp; apt upgrade -y # fish 準備 sudo apt-add-repository ppa:fish-shell/release-3 sudo apt update -y # install fish sudo apt install -y fish # change default shell chsh -s /usr/bin/fish # install fisher curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher fisher -v # add theme fisher add oh-my-fish/theme-agnoster # font powerline git clone https://github.</description>
+      <description>WSL(Windows Subsystem for Linux)の設定 前提  WSLが利用可能であること Ubuntu18.04  Setup # 日本からミラーするように sudo sed -i -e &amp;#39;s%http://.*.ubuntu.com%http://ftp.jaist.ac.jp/pub/Linux%g&amp;#39; /etc/apt/sources.list # アップデート sudo apt update -y &amp;amp;&amp;amp; apt upgrade -y # fish 準備 sudo apt-add-repository ppa:fish-shell/release-3 sudo apt update -y # install fish sudo apt install -y fish # change default shell .bashrc exec fish # install fisher curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher fisher -v # add theme fisher add oh-my-fish/theme-agnoster # font powerline git clone https://github.</description>
     </item>
     
     <item>

@@ -116,7 +116,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-link"><a href="https://icck.github.io/posts/0011-wsl/">WSLの設定</a></h4>
 							<h4 class="post-date">Sep 24, 2019</h4>
 						</div>
-						<div class="post-summary"><p>WSL(Windows Subsystem for Linux)の設定 前提  WSLが利用可能であること Ubuntu18.04  Setup # 日本からミラーするように sudo sed -i -e &#39;s%http://.*.ubuntu.com%http://ftp.jaist.ac.jp/pub/Linux%g&#39; /etc/apt/sources.list # アップデート sudo apt update -y &amp;&amp; apt upgrade -y # fish 準備 sudo apt-add-repository ppa:fish-shell/release-3 sudo apt update -y # install fish sudo apt install -y fish # change default shell chsh -s /usr/bin/fish # install fisher curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher fisher -v # add theme fisher add oh-my-fish/theme-agnoster # font powerline git clone https://github.</p></div>
+						<div class="post-summary"><p>WSL(Windows Subsystem for Linux)の設定 前提  WSLが利用可能であること Ubuntu18.04  Setup # 日本からミラーするように sudo sed -i -e &#39;s%http://.*.ubuntu.com%http://ftp.jaist.ac.jp/pub/Linux%g&#39; /etc/apt/sources.list # アップデート sudo apt update -y &amp;&amp; apt upgrade -y # fish 準備 sudo apt-add-repository ppa:fish-shell/release-3 sudo apt update -y # install fish sudo apt install -y fish # change default shell .bashrc exec fish # install fisher curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher fisher -v # add theme fisher add oh-my-fish/theme-agnoster # font powerline git clone https://github.</p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/0011-wsl/">Read More</a>
 						</div>
