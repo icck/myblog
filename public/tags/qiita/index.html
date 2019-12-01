@@ -6,7 +6,7 @@
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -117,8 +117,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-date">Sep 17, 2019</h4>
 						</div>
 						<div class="post-summary"><p>前回投稿した「Qiita API でいいねとVIEW数をCurlで取得する方法」を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。
-Code 以下のコードを実行しs3に格納していきます。
-※事前にバケットは作成しておきます。
+Code 以下のコードを実行しs3に格納していきます。※事前にバケットは作成しておきます。
 import csv import json import logging import os import sys import boto3 import requests formatter = &#39;%(asctime)s%(name)-12s%(levelname)-8s%(message)s&#39; logging.basicConfig(level=logging.WARNING, format=formatter) logger = logging.getLogger(__name__) def get_next_url(response): link = response.headers[&#39;link&#39;] if link is None: return None links = link.split(&#39;,&#39;) for link in links: if &#39;rel=&#34;next&#34;&#39; in link: return link[link.find(&#39;&lt;&#39;) + 1:link.find(&#39;&gt;&#39;)] return None def get_items(token): url = &#39;https://qiita.com/api/v2/authenticated_user/items&#39; headers = {&#39;Authorization&#39;: &#39;Bearer {}&#39;.format(token)} items = [] while True: response = requests.</p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/0010-qiita-python/">Read More</a>

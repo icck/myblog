@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -106,68 +106,52 @@ ga('create', 'UA-126514155-2', 'auto');
             <h1><a href="https://icck.github.io/posts/0009-qiita-curl/">Qiita API でいいねとVIEW数をCurlで取得する方法</a></h1>
             <span class="post-date">Sep 15, 2019 </span>
             <div class="post-content">
-                
-
-<h1 id="はじめに">はじめに</h1>
-
+                <h1 id="heading">はじめに</h1>
 <p>QiitaにはAPIが用意されています。
 私もQiitaに投稿しているのですが、Google Analyticsでは取得しきれない「いいね」の情報が欲しくてCurlで取得する方法を調べてみました。</p>
-
 <p>APIのドキュメントは以下にあります。</p>
-
 <p><a href="https://qiita.com/api/v2/docs">https://qiita.com/api/v2/docs</a></p>
-
-<h1 id="apiを使うための準備">APIを使うための準備</h1>
-
+<h1 id="api">APIを使うための準備</h1>
 <p>個人の情報を取得するためにはアクセストークンを発行する必要があります。</p>
-
 <p><a href="https://qiita.com/settings/tokens/new">https://qiita.com/settings/tokens/new</a></p>
-
 <p>にアクセスし、アクセストークンを発行しましょう。</p>
-
-<p><img src="/posts/0009/t1.png" alt="t1" /></p>
-
+<p><img src="/posts/0009/t1.png" alt="t1"></p>
 <p>発行できたら、あとはドキュメントに従ってCurlでデータを取得していきます。</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">QIITA_TOKEN<span style="color:#f92672">=</span>XXXXXXXXX
 <span style="color:#75715e"># いいね、記事タイトル→CSV形式</span>
-curl -sH <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+curl -sH <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://qiita.com/api/v2/authenticated_user/items?page=1&amp;per_page=100&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  | jq -r <span style="color:#e6db74">&#39;.[] | [.likes_count, .title, .id] | @csv&#39;</span>
 
-<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;Session Managerでプライベートサブネット上のEC2にSSHする方法&#34;</span>,<span style="color:#e6db74">&#34;e8dc6b039ef95d7b3d72&#34;</span>
-<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;5分でAWS Elastic Beanstalk(作って、修正して、お片付け)&#34;</span>,<span style="color:#e6db74">&#34;e30d62e878b1b2c6f3d7&#34;</span>
-<span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#34;CodeBuildでECRビルドエラーから得た4つの知見&#34;</span>,<span style="color:#e6db74">&#34;bcf118a38c2a691a837d&#34;</span>
-<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;AWS Cloud9でAWS SAM CLI環境作成～Hello World(Python)まで&#34;</span>,<span style="color:#e6db74">&#34;873721df727943beb52d&#34;</span>
-<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#34;[Docker for Windows]Kubernetesを動かしてみる&#34;</span>,<span style="color:#e6db74">&#34;91eac9da094666e47c62&#34;</span>
-<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;Docker for WindowsでEnabled Kubernetesが出来なくてハマったときの解決方法&#34;</span>,<span style="color:#e6db74">&#34;c40eede0bb120d643f2c&#34;</span>
-<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;[小ネタ]fishでaws-cliの補完機能を使うための手順&#34;</span>,<span style="color:#e6db74">&#34;e57a86ba65c14a7fbb19&#34;</span>
-<span style="color:#ae81ff">9</span>,<span style="color:#e6db74">&#34;Dockerでaws-cli環境を作ればアカウント切替が簡単に&#34;</span>,<span style="color:#e6db74">&#34;40545486a342179a5bd3&#34;</span>
-<span style="color:#ae81ff">7</span>,<span style="color:#e6db74">&#34;Pythonista3でstashを実行しNo module named &#39;urlparse&#39;が出た場合の解決方法&#34;</span>,<span style="color:#e6db74">&#34;a33a3b113dea0b2fa850&#34;</span>
-<span style="color:#ae81ff">5</span>,<span style="color:#e6db74">&#34;QiitaにGoogleAnalyticsの設定する。数字を眺めて楽しい&#34;</span>,<span style="color:#e6db74">&#34;56060f8a72863ee05924&#34;</span>
-<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#34;バッチファイルを経由すればPowerShellファイルの実行権限を変えずに指定権限で実行できた&#34;</span>,<span style="color:#e6db74">&#34;60bc30a793a8f4ecdc2b&#34;</span>
-<span style="color:#ae81ff">27</span>,<span style="color:#e6db74">&#34;Docker for Windowsをインストール後 could not read CA certificateエラーが出た時の解決方法&#34;</span>,<span style="color:#e6db74">&#34;60e1c1f8b6a05c8fdf72&#34;</span>
-<span style="color:#ae81ff">10</span>,<span style="color:#e6db74">&#34;AWS認定ソリューションアーキテクトアソシエイト合格[2018.04]&#34;</span>,<span style="color:#e6db74">&#34;a1416e818135a424ad89&#34;</span>
-<span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#34;[AWS Cloud9]EC2自動停止を検知して別の処理を始める&#34;</span>,<span style="color:#e6db74">&#34;c841fa99af2c88a6d956&#34;</span>
-<span style="color:#ae81ff">5</span>,<span style="color:#e6db74">&#34;AWS Cloud9でpythonライブラリを含めたLambdaのデプロイ&#34;</span>,<span style="color:#e6db74">&#34;6cc042d2693b84c96905&#34;</span>
-<span style="color:#ae81ff">16</span>,<span style="color:#e6db74">&#34;AWS Cloud9でLambdaの作成、テスト、デプロイまでの手順まとめ&#34;</span>,<span style="color:#e6db74">&#34;4c2fa4e0bd87ce214c92&#34;</span>
-<span style="color:#ae81ff">50</span>,<span style="color:#e6db74">&#34;AWS Cloud9を動かしてみた&#34;</span>,<span style="color:#e6db74">&#34;7705ef6871e261d6535e&#34;</span>
-<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;Win10 Creators Update後、vagrant upがエラーになったときの解決方法&#34;</span>,<span style="color:#e6db74">&#34;37e3b88c657b4e4cdb51&#34;</span>
-<span style="color:#ae81ff">11</span>,<span style="color:#e6db74">&#34;SNSでSlack投稿&#34;</span>,<span style="color:#e6db74">&#34;75f484cd3ccd944cd4c2&#34;</span></code></pre></div>
-
+0,<span style="color:#e6db74">&#34;Session Managerでプライベートサブネット上のEC2にSSHする方法&#34;</span>,<span style="color:#e6db74">&#34;e8dc6b039ef95d7b3d72&#34;</span>
+0,<span style="color:#e6db74">&#34;5分でAWS Elastic Beanstalk(作って、修正して、お片付け)&#34;</span>,<span style="color:#e6db74">&#34;e30d62e878b1b2c6f3d7&#34;</span>
+2,<span style="color:#e6db74">&#34;CodeBuildでECRビルドエラーから得た4つの知見&#34;</span>,<span style="color:#e6db74">&#34;bcf118a38c2a691a837d&#34;</span>
+0,<span style="color:#e6db74">&#34;AWS Cloud9でAWS SAM CLI環境作成～Hello World(Python)まで&#34;</span>,<span style="color:#e6db74">&#34;873721df727943beb52d&#34;</span>
+3,<span style="color:#e6db74">&#34;[Docker for Windows]Kubernetesを動かしてみる&#34;</span>,<span style="color:#e6db74">&#34;91eac9da094666e47c62&#34;</span>
+0,<span style="color:#e6db74">&#34;Docker for WindowsでEnabled Kubernetesが出来なくてハマったときの解決方法&#34;</span>,<span style="color:#e6db74">&#34;c40eede0bb120d643f2c&#34;</span>
+1,<span style="color:#e6db74">&#34;[小ネタ]fishでaws-cliの補完機能を使うための手順&#34;</span>,<span style="color:#e6db74">&#34;e57a86ba65c14a7fbb19&#34;</span>
+9,<span style="color:#e6db74">&#34;Dockerでaws-cli環境を作ればアカウント切替が簡単に&#34;</span>,<span style="color:#e6db74">&#34;40545486a342179a5bd3&#34;</span>
+7,<span style="color:#e6db74">&#34;Pythonista3でstashを実行しNo module named &#39;urlparse&#39;が出た場合の解決方法&#34;</span>,<span style="color:#e6db74">&#34;a33a3b113dea0b2fa850&#34;</span>
+5,<span style="color:#e6db74">&#34;QiitaにGoogleAnalyticsの設定する。数字を眺めて楽しい&#34;</span>,<span style="color:#e6db74">&#34;56060f8a72863ee05924&#34;</span>
+3,<span style="color:#e6db74">&#34;バッチファイルを経由すればPowerShellファイルの実行権限を変えずに指定権限で実行できた&#34;</span>,<span style="color:#e6db74">&#34;60bc30a793a8f4ecdc2b&#34;</span>
+27,<span style="color:#e6db74">&#34;Docker for Windowsをインストール後 could not read CA certificateエラーが出た時の解決方法&#34;</span>,<span style="color:#e6db74">&#34;60e1c1f8b6a05c8fdf72&#34;</span>
+10,<span style="color:#e6db74">&#34;AWS認定ソリューションアーキテクトアソシエイト合格[2018.04]&#34;</span>,<span style="color:#e6db74">&#34;a1416e818135a424ad89&#34;</span>
+2,<span style="color:#e6db74">&#34;[AWS Cloud9]EC2自動停止を検知して別の処理を始める&#34;</span>,<span style="color:#e6db74">&#34;c841fa99af2c88a6d956&#34;</span>
+5,<span style="color:#e6db74">&#34;AWS Cloud9でpythonライブラリを含めたLambdaのデプロイ&#34;</span>,<span style="color:#e6db74">&#34;6cc042d2693b84c96905&#34;</span>
+16,<span style="color:#e6db74">&#34;AWS Cloud9でLambdaの作成、テスト、デプロイまでの手順まとめ&#34;</span>,<span style="color:#e6db74">&#34;4c2fa4e0bd87ce214c92&#34;</span>
+50,<span style="color:#e6db74">&#34;AWS Cloud9を動かしてみた&#34;</span>,<span style="color:#e6db74">&#34;7705ef6871e261d6535e&#34;</span>
+1,<span style="color:#e6db74">&#34;Win10 Creators Update後、vagrant upがエラーになったときの解決方法&#34;</span>,<span style="color:#e6db74">&#34;37e3b88c657b4e4cdb51&#34;</span>
+11,<span style="color:#e6db74">&#34;SNSでSlack投稿&#34;</span>,<span style="color:#e6db74">&#34;75f484cd3ccd944cd4c2&#34;</span></code></pre></div>
 <p>VIEW数は記事単位でしか取得できないようです。（nullが取得されてしまう）
 プログラムで記事をループしてVIEW数を取得する必要がありそうですね。</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ITEM_ID<span style="color:#f92672">=</span>7705ef6871e261d6535e
-curl -sH <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://qiita.com/api/v2/items/</span><span style="color:#e6db74">${</span>ITEM_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+curl -sH <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://qiita.com/api/v2/items/</span><span style="color:#e6db74">${</span>ITEM_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  | jq -r <span style="color:#e6db74">&#39;.page_views_count&#39;</span>
 
 <span style="color:#ae81ff">21895</span></code></pre></div>
-
-<h1 id="さいごに">さいごに</h1>
-
-<p>投稿した後にVIEW数などは日々気になるものです。<br>
+<h1 id="heading1">さいごに</h1>
+<p>投稿した後にVIEW数などは日々気になるものです。<!-- raw HTML omitted -->
 私も自動で取得する仕組みを作るなど応用してみたいと思います。</p>
 
             </div>

@@ -6,7 +6,7 @@
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -116,7 +116,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-link"><a href="https://icck.github.io/posts/0005-dynamodb-ttl/">Dynamodb TTL(Time to Live、データを自動削除する機能)を使ってみた</a></h4>
 							<h4 class="post-date">Sep 1, 2019</h4>
 						</div>
-						<div class="post-summary"><p>TTLとは  レコード毎にデータの有効期限を指定でき、その有効期限を過ぎるとデータが自動削除される機能です  利用例  低アクセスデータをアーカイブTBLへ移動  メインTBLと同定義、キャパシティーだけ下げてOLDデータを保存  低アクセスデータを削除  削除時にトリガーして、LOGを残す  トリガーさせるにはStreamの有効化が必要  TTL詳細  TTL の有効化  カラムで指定した有効期限を過ぎると、自動でデータが消える 変更が完全に処理されるまでに最大で 1 時間かかる  TTL 属性  項目の TTL タイムスタンプを保存する DynamoDB 属性の名前  有効期限はNumber型のエポック時間(Unixtime（ミリ秒無し）)を指定  現在の時間を、項目の Time To Live 属性に保存されている時間と比較 属性に保存されているエポック時間の値が現在の時間よりも少ない場合、項目は期限切れとマークされ、その後に削除される  データは48時間以内に削除される  リアルタイム性が重要でない場合（48時間後に消えてもOKな場合）は、とても有効な機能  スループットは消費せず、データ容量が減らせる  エポック時間形式(Unixtime)  コンピューターシステム上での時刻表現の一種 UNIXエポック、すなわち協定世界時 (UTC) での1970年1月1日午前0時0分0秒から形式的な経過秒数（すなわち、実質的な経過秒数から、その間に挿入された閏秒を引き、削除された閏秒を加えたもの） 現在時刻からエポック時間を取得する方法  Linux ターミナル: date +%s Python: import time; long(time.time()) Java: System.currentTimeMillis() / 1000L JavaScript: Math.</p></div>
+						<div class="post-summary"><p>TTLとは  レコード毎にデータの有効期限を指定でき、その有効期限を過ぎるとデータが自動削除される機能です  利用例  低アクセスデータをアーカイブTBLへ移動  メインTBLと同定義、キャパシティーだけ下げてOLDデータを保存   低アクセスデータを削除  削除時にトリガーして、LOGを残す   トリガーさせるにはStreamの有効化が必要  TTL詳細  TTL の有効化  カラムで指定した有効期限を過ぎると、自動でデータが消える 変更が完全に処理されるまでに最大で 1 時間かかる   TTL 属性  項目の TTL タイムスタンプを保存する DynamoDB 属性の名前   有効期限はNumber型のエポック時間(Unixtime（ミリ秒無し）)を指定  現在の時間を、項目の Time To Live 属性に保存されている時間と比較 属性に保存されているエポック時間の値が現在の時間よりも少ない場合、項目は期限切れとマークされ、その後に削除される   データは48時間以内に削除される  リアルタイム性が重要でない場合（48時間後に消えてもOKな場合）は、とても有効な機能   スループットは消費せず、データ容量が減らせる  エポック時間形式(Unixtime)  コンピューターシステム上での時刻表現の一種 UNIXエポック、すなわち協定世界時 (UTC) での1970年1月1日午前0時0分0秒から形式的な経過秒数（すなわち、実質的な経過秒数から、その間に挿入された閏秒を引き、削除された閏秒を加えたもの） 現在時刻からエポック時間を取得する方法  Linux ターミナル: date +%s Python: import time; long(time.</p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/0005-dynamodb-ttl/">Read More</a>
 						</div>
@@ -129,7 +129,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-link"><a href="https://icck.github.io/posts/2019-08-31/">DynamoDBでSparse Indexesを利用するテクニック</a></h4>
 							<h4 class="post-date">Aug 31, 2019</h4>
 						</div>
-						<div class="post-summary"><p> Sparse Indexesとは  DynamoDBのデータ抽出アプローチのテクニックの１つ 特定Itemにしか設定していない項目にGSIを含めることでプライマリーキー、ソートキー以外のキーでデータ抽出を容易に 以下の悩みを解決（プライマリーキー、ソートキー以外のキーでデータ抽出）  scanだと高コスト、キーで検索しても高コスト、フィルターだとキー検索とコスト一緒   サンプル: gameから最優秀賞を取得 初期テーブル  game単位で最優秀スコアのデータを取得したい scoreの最優秀をawdという項目を用意。対象以外は項目を設定しない   awdを含めたグローバルセカンダリインデックスを作成 GSIを検索  最優秀賞が設定されている項目が少ないため、VIEWが出来た時点で絞り込まれている scanしても低コスト！←今回の一番のポイント  aws dynamodb scan --table-name game --index-name name-awd-index { &#34;Count&#34;: 1, &#34;Items&#34;: [ { &#34;score&#34;: { &#34;S&#34;: &#34;3&#34; }, &#34;id&#34;: { &#34;S&#34;: &#34;user3&#34; }, &#34;awd&#34;: { &#34;S&#34;: &#34;cp&#34; }, &#34;name&#34;: { &#34;S&#34;: &#34;game1&#34; } } ], &#34;ScannedCount&#34;: 1, &#34;ConsumedCapacity&#34;: null } </p></div>
+						<div class="post-summary"><p>Sparse Indexesとは  DynamoDBのデータ抽出アプローチのテクニックの１つ 特定Itemにしか設定していない項目にGSIを含めることでプライマリーキー、ソートキー以外のキーでデータ抽出を容易に 以下の悩みを解決（プライマリーキー、ソートキー以外のキーでデータ抽出）  scanだと高コスト、キーで検索しても高コスト、フィルターだとキー検索とコスト一緒    サンプル: gameから最優秀賞を取得 初期テーブル  game単位で最優秀スコアのデータを取得したい scoreの最優秀をawdという項目を用意。対象以外は項目を設定しない   awdを含めたグローバルセカンダリインデックスを作成 GSIを検索  最優秀賞が設定されている項目が少ないため、VIEWが出来た時点で絞り込まれている scanしても低コスト！←今回の一番のポイント  aws dynamodb scan --table-name game --index-name name-awd-index { &#34;Count&#34;: 1, &#34;Items&#34;: [ { &#34;score&#34;: { &#34;S&#34;: &#34;3&#34; }, &#34;id&#34;: { &#34;S&#34;: &#34;user3&#34; }, &#34;awd&#34;: { &#34;S&#34;: &#34;cp&#34; }, &#34;name&#34;: { &#34;S&#34;: &#34;game1&#34; } } ], &#34;ScannedCount&#34;: 1, &#34;ConsumedCapacity&#34;: null } </p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/2019-08-31/">Read More</a>
 						</div>
@@ -142,7 +142,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-link"><a href="https://icck.github.io/posts/2019-08-29/">DynamoDBをaws cliで操作する</a></h4>
 							<h4 class="post-date">Aug 29, 2019</h4>
 						</div>
-						<div class="post-summary"><p>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い  key-schema  HASH パーティションキー RANGE ソートキー  provisioned-throughput  ReadCapacityUnits 読み込みスループット WriteCapacityUnits 書き込みスループット   put-item aws dynamodb put-item \  --table-name mails \  --item &#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.mail&#34;} }&#39; \  --return-consumed-capacity TOTAL { &#34;ConsumedCapacity&#34;: { &#34;CapacityUnits&#34;: 1.</p></div>
+						<div class="post-summary"><p>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い   key-schema  HASH  パーティションキー   RANGE  ソートキー     provisioned-throughput  ReadCapacityUnits  読み込みスループット   WriteCapacityUnits  書き込みスループット      put-item aws dynamodb put-item \  --table-name mails \  --item &#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.</p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/2019-08-29/">Read More</a>
 						</div>

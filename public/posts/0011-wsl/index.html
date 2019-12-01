@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -106,24 +106,17 @@ ga('create', 'UA-126514155-2', 'auto');
             <h1><a href="https://icck.github.io/posts/0011-wsl/">WSLの設定</a></h1>
             <span class="post-date">Sep 24, 2019 </span>
             <div class="post-content">
-                
-
-<h1 id="wsl-windows-subsystem-for-linux-の設定">WSL(Windows Subsystem for Linux)の設定</h1>
-
-<h2 id="前提">前提</h2>
-
+                <h1 id="wslwindows-subsystem-for-linux">WSL(Windows Subsystem for Linux)の設定</h1>
+<h2 id="heading">前提</h2>
 <ul>
 <li>WSLが利用可能であること</li>
 <li>Ubuntu18.04</li>
 </ul>
-
 <h2 id="setup">Setup</h2>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 日本からミラーするように</span>
 sudo sed -i -e <span style="color:#e6db74">&#39;s%http://.*.ubuntu.com%http://ftp.jaist.ac.jp/pub/Linux%g&#39;</span> /etc/apt/sources.list
 <span style="color:#75715e"># アップデート</span>
 sudo apt update -y <span style="color:#f92672">&amp;&amp;</span> apt upgrade -y</code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># fish 準備</span>
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update -y
@@ -133,7 +126,6 @@ sudo apt install -y fish
 
 <span style="color:#75715e"># change default shell .bashrc</span>
 exec fish</code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># install fisher</span>
 curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 
@@ -141,47 +133,37 @@ fisher -v
 
 <span style="color:#75715e"># add theme</span>
 fisher add oh-my-fish/theme-agnoster</code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># font powerline</span>
 git clone https://github.com/powerline/fonts.git
 <span style="color:#75715e"># mv c drive</span>
 sudo mv fonts /mnt/c/</code></pre></div>
-
 <ul>
 <li>C:\fonts\SourceCodePro\Source Code Pro for Powerline.otf</li>
 </ul>
-
-<p><img src="/posts/0011/1.png" alt="1" /></p>
-
+<p><img src="/posts/0011/1.png" alt="1"></p>
 <ul>
-<li><p>ConEmu</p>
-
+<li>
+<p>ConEmu</p>
 <ul>
 <li><a href="https://www.fosshub.com/ConEmu.html">https://www.fosshub.com/ConEmu.html</a></li>
 <li>Download ConEmu Stable, Installer (32-bit, 64-bit)</li>
-</ul></li>
-
-<li><p>ConEmu Settings</p></li>
 </ul>
-
-<p><img src="/posts/0011/2.png" alt="2" /></p>
-
+</li>
+<li>
+<p>ConEmu Settings</p>
+</li>
+</ul>
+<p><img src="/posts/0011/2.png" alt="2"></p>
 <ul>
 <li><code>%windir%¥system32¥bash.exe ~ -new_console:t:&quot;Fish&quot; -cur_console:p -c fish</code></li>
 </ul>
-
-<p><img src="/posts/0011/3.png" alt="3" /></p>
-
-<p><img src="/posts/0011/4.png" alt="4" /></p>
-
-<p><img src="/posts/0011/5.png" alt="5" /></p>
-
+<p><img src="/posts/0011/3.png" alt="3"></p>
+<p><img src="/posts/0011/4.png" alt="4"></p>
+<p><img src="/posts/0011/5.png" alt="5"></p>
 <ul>
 <li>見た目完成</li>
 </ul>
-
-<p><img src="/posts/0011/6.png" alt="6" /></p>
-
+<p><img src="/posts/0011/6.png" alt="6"></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># bashコマンドが使えるように</span>
 fisher add edc/bass
 
@@ -192,7 +174,6 @@ git clone --depth <span style="color:#ae81ff">1</span> https://github.com/junegu
 
 <span style="color:#75715e"># bd</span>
 fisher add 0rax/fish-bd</code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim ~/.config/fish/config.fish
 
 <span style="color:#75715e">## vimで開く</span>
@@ -228,7 +209,6 @@ alias gco<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gi
 alias gba<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;git branch -a&#34;</span>
 alias glog<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;git log --graph --date=iso --pretty=&#39;[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s&#39;&#34;</span>
 alias gll<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;git log --pretty=format:&#39;%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]&#39; --decorate --numstat&#34;</span></code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># install Home-Brew</span>
 sudo apt install build-essential curl file git
 
@@ -238,7 +218,6 @@ curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh
 alias brew<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/home/linuxbrew/.linuxbrew/bin/brew&#39;</span>
 
 brew update</code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Hugo</span>
 - Windowsだとgitsubmoduleがうまく動作出来なかった。（調査中）
 wget https://github.com/gohugoio/hugo/releases/download/v0.58.3/hugo_0.58.3_Linux-64bit.deb
