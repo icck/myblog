@@ -14,7 +14,8 @@ menu: "main"
     "気になったツール"
   ],
   "資格": [
-    "SAA",
+    "AWS Certified Solutions Architect – Associate",
+    "AWS Certified Developer - Associate",
     "Oracle Silver",
     "Java Silver"
   ],
@@ -31,4 +32,9 @@ menu: "main"
 }
 ~~~
 
+<img src="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-04-18&ci=AWS00468072">
+<img src="https://www.certmetrics.com/amazon/public/badge.aspx?i=2&t=c&d=2019-12-22&ci=AWS00468072">
+
+
+<br>
 <img src="https://grass-graph.moshimo.works/images/icck.png">

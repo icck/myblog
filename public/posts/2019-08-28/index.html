@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.60.1" />
+<meta name="generator" content="Hugo 0.62.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -109,13 +109,13 @@ ga('create', 'UA-126514155-2', 'auto');
                 <h1 id="heading">完成したもの</h1>
 <p>まずは動いているものは以下になります。</p>
 <p><a href="https://icck.github.io/search/">https://icck.github.io/search/</a></p>
-<h1 id="heading1">作業手順</h1>
+<h1 id="heading-1">作業手順</h1>
 <ul>
 <li>手順を順に記載していきます。以下の記事を参考にさせていただきました。</li>
 <li><a href="http://rs.luminousspice.com/hugo-site-search/">http://rs.luminousspice.com/hugo-site-search/</a></li>
 <li><a href="https://snap.textgh.org/post/full-text-search-in-hugo/">https://snap.textgh.org/post/full-text-search-in-hugo/</a></li>
 </ul>
-<h2 id="heading2">インデックスファイルのテンプレート</h2>
+<h2 id="heading-2">インデックスファイルのテンプレート</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir ./layouts/js
 $ touch ./layouts/js/single.html</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> [{{ <span style="color:#a6e22e">range</span> <span style="color:#a6e22e">$index</span>, <span style="color:#a6e22e">$page</span> <span style="color:#f92672">:</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">where</span> .<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">Pages</span> <span style="color:#e6db74">&#34;Section&#34;</span> <span style="color:#e6db74">&#34;posts&#34;</span>}}
@@ -125,15 +125,15 @@ $ touch ./layouts/js/single.html</code></pre></div>
 <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;{{ .PlainWords }}&#34;</span>
 }{{ <span style="color:#a6e22e">end</span> }}]
 </code></pre></div>
-<h2 id="heading3">インデックスファイルを生成する空の投稿</h2>
+<h2 id="heading-3">インデックスファイルを生成する空の投稿</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ hugo new pages/indexjs.md</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">---
 date: 2019-08-28T21:50:35+09:00
 type: &#34;js&#34;
 url: &#34;index.js&#34;
 ---</code></pre></div>
-<h1 id="heading4">検索ページの作成</h1>
-<h2 id="heading5">検索ページテンプレートの作成</h2>
+<h1 id="heading-4">検索ページの作成</h1>
+<h2 id="heading-5">検索ページテンプレートの作成</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir ./layouts/search/
 $ touch ./layouts/search/single.html</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ partial &#34;head.html&#34; . }}
@@ -422,7 +422,7 @@ window.<span style="color:#a6e22e">onload</span><span style="color:#f92672">=</s
 &lt;/<span style="color:#f92672">div</span>&gt;
 
 {{ partial &#34;footer.html&#34; . }}</code></pre></div>
-<h2 id="heading6">検索ページの作成</h2>
+<h2 id="heading-6">検索ページの作成</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ hugo new pages/search.md</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">---
 date: 2019-08-28T22:01:57+09:00
@@ -464,7 +464,7 @@ title: &#34;全文検索&#34;
             <div class="push"></div>
         </div>
         <footer class="footer text-center">
-<p>Copyright &copy; 2019 Issei Komori -
+<p>Copyright &copy; 2020 Issei Komori -
 <span class="credit">
 	Powered by
 	<a target="_blank" href="https://gohugo.io">Hugo</a>

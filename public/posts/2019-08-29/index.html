@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.60.1" />
+<meta name="generator" content="Hugo 0.62.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -152,7 +152,7 @@ ga('create', 'UA-126514155-2', 'auto');
 </ul>
 </li>
 </ul>
-<h1 id="putitem">put-item</h1>
+<h1 id="put-item">put-item</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb put-item <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --table-name mails <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    --item <span style="color:#e6db74">&#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.mail&#34;} }&#39;</span> <span style="color:#ae81ff">\
@@ -240,7 +240,7 @@ ga('create', 'UA-126514155-2', 'auto');
     <span style="color:#e6db74">&#34;ScannedCount&#34;</span>: 2,
     <span style="color:#e6db74">&#34;ConsumedCapacity&#34;</span>: null
 <span style="color:#f92672">}</span></code></pre></div>
-<h1 id="getitemkey-select">get-item(Key Select)</h1>
+<h1 id="get-itemkey-select">get-item(Key Select)</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb get-item --table-name mails --key <span style="color:#e6db74">&#39;{ &#34;id&#34;: {&#34;S&#34;: &#34;1&#34; },&#34;Name&#34;: {&#34;S&#34;: &#34;test&#34;} }&#39;</span>
 
 <span style="color:#f92672">{</span>
@@ -267,14 +267,14 @@ ga('create', 'UA-126514155-2', 'auto');
     <span style="color:#e6db74">&#34;ScannedCount&#34;</span>: 2, 
     <span style="color:#e6db74">&#34;ConsumedCapacity&#34;</span>: null
 <span style="color:#f92672">}</span></code></pre></div>
-<h1 id="listtables">list-tables</h1>
+<h1 id="list-tables">list-tables</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb list-tables
 <span style="color:#f92672">{</span>
     <span style="color:#e6db74">&#34;TableNames&#34;</span>: <span style="color:#f92672">[</span>
         <span style="color:#e6db74">&#34;mails&#34;</span>
     <span style="color:#f92672">]</span>
 <span style="color:#f92672">}</span></code></pre></div>
-<h1 id="deleteitemkey-select">delete-item(Key Select)</h1>
+<h1 id="delete-itemkey-select">delete-item(Key Select)</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb delete-item --table-name mails --key <span style="color:#e6db74">&#39;{ &#34;id&#34;: {&#34;S&#34;: &#34;1&#34; },&#34;Name&#34;: {&#34;S&#34;: &#34;test&#34;} }&#39;</span>
 aws dynamodb scan --table-name mails --select <span style="color:#e6db74">&#34;COUNT&#34;</span>
 <span style="color:#f92672">{</span>
@@ -282,7 +282,7 @@ aws dynamodb scan --table-name mails --select <span style="color:#e6db74">&#34;C
     <span style="color:#e6db74">&#34;ScannedCount&#34;</span>: 1, 
     <span style="color:#e6db74">&#34;ConsumedCapacity&#34;</span>: null
 <span style="color:#f92672">}</span></code></pre></div>
-<h1 id="deletetable">delete-table</h1>
+<h1 id="delete-table">delete-table</h1>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws dynamodb delete-table --table-name mails
 <span style="color:#f92672">{</span>
     <span style="color:#e6db74">&#34;TableDescription&#34;</span>: <span style="color:#f92672">{</span>
@@ -328,7 +328,7 @@ aws dynamodb scan --table-name mails --select <span style="color:#e6db74">&#34;C
             <div class="push"></div>
         </div>
         <footer class="footer text-center">
-<p>Copyright &copy; 2019 Issei Komori -
+<p>Copyright &copy; 2020 Issei Komori -
 <span class="credit">
 	Powered by
 	<a target="_blank" href="https://gohugo.io">Hugo</a>
