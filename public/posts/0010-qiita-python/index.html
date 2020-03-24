@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.1" />
+<meta name="generator" content="Hugo 0.68.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -120,35 +120,35 @@ ga('create', 'UA-126514155-2', 'auto');
 
 <span style="color:#f92672">import</span> requests
 
-formatter <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(asctime)s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(name)-12s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(levelname)-8s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>
+formatter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(asctime)s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(name)-12s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(levelname)-8s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>
 logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>WARNING, format<span style="color:#f92672">=</span>formatter)
 logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_next_url</span>(response):
 
-    link <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>headers[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">link</span><span style="color:#e6db74">&#39;</span>]
+    link <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>headers[<span style="color:#e6db74">&#39;link&#39;</span>]
     <span style="color:#66d9ef">if</span> link <span style="color:#f92672">is</span> None:
         <span style="color:#66d9ef">return</span> None
 
-    links <span style="color:#f92672">=</span> link<span style="color:#f92672">.</span>split(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">&#39;</span>)
+    links <span style="color:#f92672">=</span> link<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)
 
     <span style="color:#66d9ef">for</span> link <span style="color:#f92672">in</span> links:
 
-        <span style="color:#66d9ef">if</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">rel=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">next</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">in</span> link:
-            <span style="color:#66d9ef">return</span> link[link<span style="color:#f92672">.</span>find(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&lt;</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:link<span style="color:#f92672">.</span>find(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span><span style="color:#e6db74">&#39;</span>)]
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;rel=&#34;next&#34;&#39;</span> <span style="color:#f92672">in</span> link:
+            <span style="color:#66d9ef">return</span> link[link<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;&lt;&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:link<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;&gt;&#39;</span>)]
     <span style="color:#66d9ef">return</span> None
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_items</span>(token):
 
-    url <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">https://qiita.com/api/v2/authenticated_user/items</span><span style="color:#e6db74">&#39;</span>
-    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Authorization</span><span style="color:#e6db74">&#39;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Bearer {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(token)}
+    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://qiita.com/api/v2/authenticated_user/items&#39;</span>
+    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">&#39;Bearer {}&#39;</span><span style="color:#f92672">.</span>format(token)}
 
     items <span style="color:#f92672">=</span> []
     <span style="color:#66d9ef">while</span> True:
         response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
         response<span style="color:#f92672">.</span>raise_for_status()
         items<span style="color:#f92672">.</span>extend(json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text))
-        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">GET {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(url))
+        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;GET {}&#39;</span><span style="color:#f92672">.</span>format(url))
 
         url <span style="color:#f92672">=</span> get_next_url(response)
         <span style="color:#66d9ef">if</span> url <span style="color:#f92672">is</span> None:
@@ -157,43 +157,43 @@ logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.
     <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> items:
 
         <span style="color:#75715e"># ビュー数</span>
-        url <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">https://qiita.com/api/v2/items/{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(item[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">id</span><span style="color:#e6db74">&#39;</span>])
-        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">GET {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(url))
+        url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://qiita.com/api/v2/items/{}&#39;</span><span style="color:#f92672">.</span>format(item[<span style="color:#e6db74">&#39;id&#39;</span>])
+        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;GET {}&#39;</span><span style="color:#f92672">.</span>format(url))
         response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
         response<span style="color:#f92672">.</span>raise_for_status()
-        item[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">page_views_count</span><span style="color:#e6db74">&#39;</span>] <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">page_views_count</span><span style="color:#e6db74">&#39;</span>]
+        item[<span style="color:#e6db74">&#39;page_views_count&#39;</span>] <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)[<span style="color:#e6db74">&#39;page_views_count&#39;</span>]
 
         <span style="color:#75715e"># ストック数</span>
-        url <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">https://qiita.com/api/v2/items/{}/stockers</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(item[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">id</span><span style="color:#e6db74">&#39;</span>])
-        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">GET {}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(url))
+        url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://qiita.com/api/v2/items/{}/stockers&#39;</span><span style="color:#f92672">.</span>format(item[<span style="color:#e6db74">&#39;id&#39;</span>])
+        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;GET {}&#39;</span><span style="color:#f92672">.</span>format(url))
         response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
         response<span style="color:#f92672">.</span>raise_for_status()
         users <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)
         <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> users:
             logger<span style="color:#f92672">.</span>info({
-                <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">id</span><span style="color:#e6db74">&#39;</span>: user[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">id</span><span style="color:#e6db74">&#39;</span>],
-                <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">name</span><span style="color:#e6db74">&#39;</span>: user[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">name</span><span style="color:#e6db74">&#39;</span>]
+                <span style="color:#e6db74">&#39;id&#39;</span>: user[<span style="color:#e6db74">&#39;id&#39;</span>],
+                <span style="color:#e6db74">&#39;name&#39;</span>: user[<span style="color:#e6db74">&#39;name&#39;</span>]
                 })
-        item[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">stocks_count</span><span style="color:#e6db74">&#39;</span>] <span style="color:#f92672">=</span> len(users)
+        item[<span style="color:#e6db74">&#39;stocks_count&#39;</span>] <span style="color:#f92672">=</span> len(users)
 
     <span style="color:#66d9ef">return</span> items
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_s3</span>(items):
-    s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">s3</span><span style="color:#e6db74">&#39;</span>)
-    bucket_name <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>Bucket(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">BUCKET_NAME</span><span style="color:#e6db74">&#39;</span>])
-    json_key <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">output/sample.json</span><span style="color:#e6db74">&#39;</span>
+    s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;s3&#39;</span>)
+    bucket_name <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>Bucket(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;BUCKET_NAME&#39;</span>])
+    json_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;output/sample.json&#39;</span>
 
     s3<span style="color:#f92672">.</span>put_object(Bucket<span style="color:#f92672">=</span>bucket_name, Key<span style="color:#f92672">=</span>json_key, Body<span style="color:#f92672">=</span>json<span style="color:#f92672">.</span>dumps(items,ensure_ascii<span style="color:#f92672">=</span>False))
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
-    TOKEN <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">TOKEN</span><span style="color:#e6db74">&#39;</span>]
+    TOKEN <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;TOKEN&#39;</span>]
     items <span style="color:#f92672">=</span> get_items(TOKEN)
     upload_s3(items)
     <span style="color:#66d9ef">return</span> items</code></pre></div>
-<h1 id="heading">実行後、バケット確認</h1>
+<h1 id="実行後バケット確認">実行後、バケット確認</h1>
 <p>JSONファイルが保存されていることを確認しました。</p>
 <p><img src="/posts/0010/2.png" alt="2"></p>
-<h1 id="heading-1">さいごに</h1>
+<h1 id="さいごに">さいごに</h1>
 <ul>
 <li>pythonの<code>requests</code>を使ってAPIからデータを取得できました。</li>
 <li>今後は、以下に発展させていこうと思います。

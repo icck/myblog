@@ -63,17 +63,7 @@
   </url>
   
   <url>
-    <loc>https://icck.github.io/</loc>
-    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://icck.github.io/tags/oracle/</loc>
-    <lastmod>2019-09-26T00:12:50+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://icck.github.io/tags/pl/sql/</loc>
     <lastmod>2019-09-26T00:12:50+09:00</lastmod>
   </url>
   
@@ -128,6 +118,11 @@
   </url>
   
   <url>
+    <loc>https://icck.github.io/</loc>
+    <lastmod>2019-09-02T23:34:26+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://icck.github.io/tags/aws-cli/</loc>
     <lastmod>2019-09-02T02:17:32+09:00</lastmod>
   </url>
@@ -164,6 +159,10 @@
   
   <url>
     <loc>https://icck.github.io/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://icck.github.io/tags/pl/sql/</loc>
   </url>
   
 </urlset>

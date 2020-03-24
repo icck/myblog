@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.1" />
+<meta name="generator" content="Hugo 0.68.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -106,7 +106,7 @@ ga('create', 'UA-126514155-2', 'auto');
             <h1><a href="https://icck.github.io/posts/2019-08-31/">DynamoDBでSparse Indexesを利用するテクニック</a></h1>
             <span class="post-date">Aug 31, 2019 </span>
             <div class="post-content">
-                <h1 id="sparse-indexes">Sparse Indexesとは</h1>
+                <h1 id="sparse-indexesとは">Sparse Indexesとは</h1>
 <ul>
 <li>DynamoDBのデータ抽出アプローチのテクニックの１つ</li>
 <li>特定Itemにしか設定していない項目にGSIを含めることでプライマリーキー、ソートキー以外のキーでデータ抽出を容易に</li>
@@ -116,16 +116,16 @@ ga('create', 'UA-126514155-2', 'auto');
 </ul>
 </li>
 </ul>
-<h1 id="-game">サンプル: gameから最優秀賞を取得</h1>
-<h2 id="heading">初期テーブル</h2>
+<h1 id="サンプル-gameから最優秀賞を取得">サンプル: gameから最優秀賞を取得</h1>
+<h2 id="初期テーブル">初期テーブル</h2>
 <ul>
 <li>game単位で最優秀スコアのデータを取得したい</li>
 <li>scoreの最優秀をawdという項目を用意。対象以外は項目を設定しない
 <img src="/posts/2019-08-31/table.png" alt="table"></li>
 </ul>
-<h2 id="awd">awdを含めたグローバルセカンダリインデックスを作成</h2>
+<h2 id="awdを含めたグローバルセカンダリインデックスを作成">awdを含めたグローバルセカンダリインデックスを作成</h2>
 <p><img src="/posts/2019-08-31/gs.png" alt="awd"></p>
-<h2 id="gsi">GSIを検索</h2>
+<h2 id="gsiを検索">GSIを検索</h2>
 <ul>
 <li>最優秀賞が設定されている項目が少ないため、VIEWが出来た時点で絞り込まれている</li>
 <li>scanしても低コスト！←今回の一番のポイント</li>

@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.1" />
+<meta name="generator" content="Hugo 0.68.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -106,12 +106,12 @@ ga('create', 'UA-126514155-2', 'auto');
             <h1><a href="https://icck.github.io/posts/0009-qiita-curl/">Qiita API でいいねとVIEW数をCurlで取得する方法</a></h1>
             <span class="post-date">Sep 15, 2019 </span>
             <div class="post-content">
-                <h1 id="heading">はじめに</h1>
+                <h1 id="はじめに">はじめに</h1>
 <p>QiitaにはAPIが用意されています。
 私もQiitaに投稿しているのですが、Google Analyticsでは取得しきれない「いいね」の情報が欲しくてCurlで取得する方法を調べてみました。</p>
 <p>APIのドキュメントは以下にあります。</p>
 <p><a href="https://qiita.com/api/v2/docs">https://qiita.com/api/v2/docs</a></p>
-<h1 id="api">APIを使うための準備</h1>
+<h1 id="apiを使うための準備">APIを使うための準備</h1>
 <p>個人の情報を取得するためにはアクセストークンを発行する必要があります。</p>
 <p><a href="https://qiita.com/settings/tokens/new">https://qiita.com/settings/tokens/new</a></p>
 <p>にアクセスし、アクセストークンを発行しましょう。</p>
@@ -119,7 +119,7 @@ ga('create', 'UA-126514155-2', 'auto');
 <p>発行できたら、あとはドキュメントに従ってCurlでデータを取得していきます。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">QIITA_TOKEN<span style="color:#f92672">=</span>XXXXXXXXX
 <span style="color:#75715e"># いいね、記事タイトル→CSV形式</span>
-curl -sH <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+curl -sH <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://qiita.com/api/v2/authenticated_user/items?page=1&amp;per_page=100&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  | jq -r <span style="color:#e6db74">&#39;.[] | [.likes_count, .title, .id] | @csv&#39;</span>
 
@@ -145,12 +145,12 @@ curl -sH <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Aut
 <p>VIEW数は記事単位でしか取得できないようです。（nullが取得されてしまう）
 プログラムで記事をループしてVIEW数を取得する必要がありそうですね。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ITEM_ID<span style="color:#f92672">=</span>7705ef6871e261d6535e
-curl -sH <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://qiita.com/api/v2/items/</span><span style="color:#e6db74">${</span>ITEM_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+curl -sH <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>QIITA_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://qiita.com/api/v2/items/</span><span style="color:#e6db74">${</span>ITEM_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  | jq -r <span style="color:#e6db74">&#39;.page_views_count&#39;</span>
 
 <span style="color:#ae81ff">21895</span></code></pre></div>
-<h1 id="heading-1">さいごに</h1>
+<h1 id="さいごに">さいごに</h1>
 <p>投稿した後にVIEW数などは日々気になるものです。<!-- raw HTML omitted -->
 私も自動で取得する仕組みを作るなど応用してみたいと思います。</p>
 

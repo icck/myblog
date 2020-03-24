@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.1" />
+<meta name="generator" content="Hugo 0.68.1" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -106,7 +106,7 @@ ga('create', 'UA-126514155-2', 'auto');
             <h1><a href="https://icck.github.io/posts/0012-oracle-curerror/">[調査方法]Oracle ORA-01000 最大オープン・カーソル数を超えました。[V$OPEN_CURSOR]</a></h1>
             <span class="post-date">Sep 26, 2019 </span>
             <div class="post-content">
-                <h1 id="oracle-ora-01000-">Oracle ORA-01000 最大オープン・カーソル数を超えました。</h1>
+                <h1 id="oracle-ora-01000-最大オープンカーソル数を超えました">Oracle ORA-01000 最大オープン・カーソル数を超えました。</h1>
 <ul>
 <li>Oracle(PLSQL)でカーソルに関するエラーが発生しハマったときの対処方法メモ</li>
 <li>原因としてはカーソルを「オープン」と「クローズ」の数の不一致
@@ -115,13 +115,13 @@ ga('create', 'UA-126514155-2', 'auto');
 </ul>
 </li>
 </ul>
-<h1 id="heading">調査方法</h1>
-<h2 id="1">1.カーソルの最大数を確認します。</h2>
+<h1 id="調査方法">調査方法</h1>
+<h2 id="1カーソルの最大数を確認します">1.カーソルの最大数を確認します。</h2>
 <ul>
 <li>これが小さすぎるのが原因の場合はSet文でOracleの設定変更しましょう。</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">show</span> <span style="color:#66d9ef">parameters</span> open_cursors;</code></pre></div>
-<h2 id="2">2.カーソルの数を確認します。</h2>
+<h2 id="2カーソルの数を確認します">2.カーソルの数を確認します。</h2>
 <ul>
 <li>私はブレークポイントデバッグを行いながら<code>count(1)</code>の増加を確認しプログラムによるカーソル増加を特定しました。</li>
 <li>自分が動作させているプログラムと確定している場合は<code>user_name</code>を条件に設定します。</li>
@@ -134,7 +134,7 @@ ga('create', 'UA-126514155-2', 'auto');
 <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> sid, user_name
 <span style="color:#66d9ef">having</span> <span style="color:#66d9ef">count</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e">-- ここは最大数に応じて調整
 </span><span style="color:#75715e"></span>  ;</code></pre></div>
-<h1 id="heading-1">さいごに</h1>
+<h1 id="さいごに">さいごに</h1>
 <ul>
 <li>明示的にオープン、フェッチ、クローズをコードに記載すると通常処理はもちろんエラー処理での適切なクローズを求められます。</li>
 <li>暗黙、明示どちらでもよいですが、<code>FORループ</code>を利用してコードを記述したほうがバグのリスクを減らすことが出来るためオススメだと思っています。</li>
