@@ -21,7 +21,7 @@ menu: "main"
   ],
   "スキル": [
     "AWS",
-    "Java": "Spring Boot",
+    "Java": "Spring Boot.",
     "SQL": "Oracle"
   ],
   "SNS": [

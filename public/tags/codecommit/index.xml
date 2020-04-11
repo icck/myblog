@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CodeCommit on icck&#39;s Blog</title>
+    <link>https://icck.github.io/tags/codecommit/</link>
+    <description>Recent content in CodeCommit on icck&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>js</language>
+    <lastBuildDate>Fri, 06 Sep 2019 21:38:30 +0900</lastBuildDate>
+    
+	<atom:link href="https://icck.github.io/tags/codecommit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS CodeCommitの作成、プルリクエストまでの方法</title>
+      <link>https://icck.github.io/posts/0007-codecommit/</link>
+      <pubDate>Fri, 06 Sep 2019 21:38:30 +0900</pubDate>
+      
+      <guid>https://icck.github.io/posts/0007-codecommit/</guid>
+      <description>Codeシリーズはまずは使ってみる！ 
+AWSにはCodeXXXと名前がついているDeveloperツールがいくつかあります。
+それらは単体でも使えますが、組み合わせて利用することが多いです。
+↓
+難しく考えず手を動かすことで、手っ取り早く感覚を掴んでいくのが学習しやすいです
+本記事では、リポジトリの作成、コミット&amp;amp;プッシュ、プルリクエストの3つを動かして行きます
+概要（最低限）  ソースコードを管理するGitリポジトリサービス サードパーティ(SourceTreeなど)利用可能 プルリクエスト機能が利用可能  リポジトリの作成  リポジトリ名を入れて、作成ボタン ＞ 完成！！ はじめにマネジメントコンソールでCodeCommitを選択しリポジトリを作成します。 名前を選択するだけ、簡単ですね。   次にgitを使う端末で設定をしていきます。 今回はAWS CLIを設定していることが前提になります。  git config --global credential.helper &amp;#39;!aws --region ap-northeast-1 codecommit credential-helper $@&amp;#39; git config --global credential.UseHttpPath true git clone [URLのクローン] コミット&amp;amp;プッシュしてみる  通常のgitと同様の利用方法が使えることを確認します。  $ echo &amp;#34;hello codecommit!&amp;#34; &amp;gt; README.md $ git add -A $ git commit -m &amp;#34;add readme&amp;#34; $ git push origin master  コミットされたことを確認しました。  プルリクエストしてみる  ブランチを作成しファイルを修正、コミット%プッシュします。  (master) $ git checkout -b f1 (f1) $ echo &amp;#34;f1 add&amp;#34; &amp;gt;&amp;gt; README.</description>
+    </item>
+    
+  </channel>
+</rss>
