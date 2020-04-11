@@ -6,7 +6,7 @@
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.68.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -129,7 +129,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-link"><a href="https://icck.github.io/posts/2019-08-29/">DynamoDBをaws cliで操作する</a></h4>
 							<h4 class="post-date">Aug 29, 2019</h4>
 						</div>
-						<div class="post-summary"><p>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い   key-schema  HASH  パーティションキー   RANGE  ソートキー     provisioned-throughput  ReadCapacityUnits  読み込みスループット   WriteCapacityUnits  書き込みスループット      put-item aws dynamodb put-item \  --table-name mails \  --item &#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.</p></div>
+						<div class="post-summary"><p>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い  key-schema  HASH パーティションキー RANGE ソートキー  provisioned-throughput  ReadCapacityUnits 読み込みスループット WriteCapacityUnits 書き込みスループット   put-item aws dynamodb put-item \  --table-name mails \  --item &#39;{&#34;id&#34;: {&#34;S&#34;: &#34;testid1&#34;},&#34;Name&#34;: {&#34;S&#34;: &#34;Alice&#34;},&#34;mail&#34;: {&#34;S&#34;: &#34;alice@test.mail&#34;} }&#39; \  --return-consumed-capacity TOTAL { &#34;ConsumedCapacity&#34;: { &#34;CapacityUnits&#34;: 1.</p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/2019-08-29/">Read More</a>
 						</div>

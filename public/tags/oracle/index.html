@@ -6,7 +6,7 @@
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.68.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -116,7 +116,7 @@ ga('create', 'UA-126514155-2', 'auto');
 							<h4 class="post-link"><a href="https://icck.github.io/posts/0012-oracle-curerror/">[調査方法]Oracle ORA-01000 最大オープン・カーソル数を超えました。[V$OPEN_CURSOR]</a></h4>
 							<h4 class="post-date">Sep 26, 2019</h4>
 						</div>
-						<div class="post-summary"><p>Oracle ORA-01000 最大オープン・カーソル数を超えました。  Oracle(PLSQL)でカーソルに関するエラーが発生しハマったときの対処方法メモ 原因としてはカーソルを「オープン」と「クローズ」の数の不一致  私の場合は、オープンがループ内で行われており、クローズはループの外にあったためオープンし過ぎでエラーになりました。    調査方法 1.カーソルの最大数を確認します。  これが小さすぎるのが原因の場合はSet文でOracleの設定変更しましょう。  show parameters open_cursors; 2.カーソルの数を確認します。  私はブレークポイントデバッグを行いながらcount(1)の増加を確認しプログラムによるカーソル増加を特定しました。 自分が動作させているプログラムと確定している場合はuser_nameを条件に設定します。 具体的なプログラム名を特定するにはsidから調査します。  select sid , user_name , count(1) from V$OPEN_CURSOR group by sid, user_name having count(1) &gt; 10 -- ここは最大数に応じて調整  ; さいごに  明示的にオープン、フェッチ、クローズをコードに記載すると通常処理はもちろんエラー処理での適切なクローズを求められます。 暗黙、明示どちらでもよいですが、FORループを利用してコードを記述したほうがバグのリスクを減らすことが出来るためオススメだと思っています。  </p></div>
+						<div class="post-summary"><p> Oracle ORA-01000 最大オープン・カーソル数を超えました。  Oracle(PLSQL)でカーソルに関するエラーが発生しハマったときの対処方法メモ 原因としてはカーソルを「オープン」と「クローズ」の数の不一致  私の場合は、オープンがループ内で行われており、クローズはループの外にあったためオープンし過ぎでエラーになりました。   調査方法 1.カーソルの最大数を確認します。  これが小さすぎるのが原因の場合はSet文でOracleの設定変更しましょう。  show parameters open_cursors; 2.カーソルの数を確認します。  私はブレークポイントデバッグを行いながらcount(1)の増加を確認しプログラムによるカーソル増加を特定しました。 自分が動作させているプログラムと確定している場合はuser_nameを条件に設定します。 具体的なプログラム名を特定するにはsidから調査します。  select sid , user_name , count(1) from V$OPEN_CURSOR group by sid, user_name having count(1) &gt; 10 -- ここは最大数に応じて調整  ; さいごに  明示的にオープン、フェッチ、クローズをコードに記載すると通常処理はもちろんエラー処理での適切なクローズを求められます。 暗黙、明示どちらでもよいですが、FORループを利用してコードを記述したほうがバグのリスクを減らすことが出来るためオススメだと思っています。  </p></div>
 						<div class="post-list-footer text-center">
 							<a href="https://icck.github.io/posts/0012-oracle-curerror/">Read More</a>
 						</div>

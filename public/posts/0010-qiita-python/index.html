@@ -6,7 +6,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.68.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
@@ -106,11 +106,17 @@ ga('create', 'UA-126514155-2', 'auto');
             <h1><a href="https://icck.github.io/posts/0010-qiita-python/">Qiita API②いいねとVIEW数をLambdaで取得してS3へ保存</a></h1>
             <span class="post-date">Sep 17, 2019 </span>
             <div class="post-content">
-                <p>前回投稿した<a href="https://icck.github.io/posts/0009-qiita-curl/">「Qiita API でいいねとVIEW数をCurlで取得する方法」</a>を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。</p>
-<p><img src="/posts/0010/1.png" alt="1"></p>
+                
+
+<p>前回投稿した<a href="https://icck.github.io/posts/0009-qiita-curl/">「Qiita API でいいねとVIEW数をCurlで取得する方法」</a>を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。</p>
+
+<p><img src="/posts/0010/1.png" alt="1" /></p>
+
 <h1 id="code">Code</h1>
-<p>以下のコードを実行しs3に格納していきます。<!-- raw HTML omitted -->
+
+<p>以下のコードを実行しs3に格納していきます。<br>
 ※事前にバケットは作成しておきます。</p>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> csv
 <span style="color:#f92672">import</span> json
 <span style="color:#f92672">import</span> logging
@@ -190,19 +196,24 @@ logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.
     items <span style="color:#f92672">=</span> get_items(TOKEN)
     upload_s3(items)
     <span style="color:#66d9ef">return</span> items</code></pre></div>
-<h1 id="実行後バケット確認">実行後、バケット確認</h1>
+
+<h1 id="実行後-バケット確認">実行後、バケット確認</h1>
+
 <p>JSONファイルが保存されていることを確認しました。</p>
-<p><img src="/posts/0010/2.png" alt="2"></p>
+
+<p><img src="/posts/0010/2.png" alt="2" /></p>
+
 <h1 id="さいごに">さいごに</h1>
+
 <ul>
 <li>pythonの<code>requests</code>を使ってAPIからデータを取得できました。</li>
 <li>今後は、以下に発展させていこうと思います。
+
 <ul>
 <li>ファイル名にタイムスタンプの追加</li>
 <li>CloudWatchから定期的に実行</li>
 <li>収集したログの可視化</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
             </div>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on icck&#39;s Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 26 Sep 2019 00:12:50 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/0012-oracle-curerror/</guid>
-      <description>Oracle ORA-01000 最大オープン・カーソル数を超えました。  Oracle(PLSQL)でカーソルに関するエラーが発生しハマったときの対処方法メモ 原因としてはカーソルを「オープン」と「クローズ」の数の不一致  私の場合は、オープンがループ内で行われており、クローズはループの外にあったためオープンし過ぎでエラーになりました。    調査方法 1.カーソルの最大数を確認します。  これが小さすぎるのが原因の場合はSet文でOracleの設定変更しましょう。  show parameters open_cursors; 2.カーソルの数を確認します。  私はブレークポイントデバッグを行いながらcount(1)の増加を確認しプログラムによるカーソル増加を特定しました。 自分が動作させているプログラムと確定している場合はuser_nameを条件に設定します。 具体的なプログラム名を特定するにはsidから調査します。  select sid , user_name , count(1) from V$OPEN_CURSOR group by sid, user_name having count(1) &amp;gt; 10 -- ここは最大数に応じて調整  ; さいごに  明示的にオープン、フェッチ、クローズをコードに記載すると通常処理はもちろんエラー処理での適切なクローズを求められます。 暗黙、明示どちらでもよいですが、FORループを利用してコードを記述したほうがバグのリスクを減らすことが出来るためオススメだと思っています。  </description>
+      <description> Oracle ORA-01000 最大オープン・カーソル数を超えました。  Oracle(PLSQL)でカーソルに関するエラーが発生しハマったときの対処方法メモ 原因としてはカーソルを「オープン」と「クローズ」の数の不一致  私の場合は、オープンがループ内で行われており、クローズはループの外にあったためオープンし過ぎでエラーになりました。   調査方法 1.カーソルの最大数を確認します。  これが小さすぎるのが原因の場合はSet文でOracleの設定変更しましょう。  show parameters open_cursors; 2.カーソルの数を確認します。  私はブレークポイントデバッグを行いながらcount(1)の増加を確認しプログラムによるカーソル増加を特定しました。 自分が動作させているプログラムと確定している場合はuser_nameを条件に設定します。 具体的なプログラム名を特定するにはsidから調査します。  select sid , user_name , count(1) from V$OPEN_CURSOR group by sid, user_name having count(1) &amp;gt; 10 -- ここは最大数に応じて調整  ; さいごに  明示的にオープン、フェッチ、クローズをコードに記載すると通常処理はもちろんエラー処理での適切なクローズを求められます。 暗黙、明示どちらでもよいですが、FORループを利用してコードを記述したほうがバグのリスクを減らすことが出来るためオススメだと思っています。  </description>
     </item>
     
     <item>
@@ -36,7 +36,8 @@
       
       <guid>https://icck.github.io/posts/0010-qiita-python/</guid>
       <description>前回投稿した「Qiita API でいいねとVIEW数をCurlで取得する方法」を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。
-Code 以下のコードを実行しs3に格納していきます。※事前にバケットは作成しておきます。
+Code 以下のコードを実行しs3に格納していきます。
+※事前にバケットは作成しておきます。
 import csv import json import logging import os import sys import boto3 import requests formatter = &amp;#39;%(asctime)s%(name)-12s%(levelname)-8s%(message)s&amp;#39; logging.basicConfig(level=logging.WARNING, format=formatter) logger = logging.getLogger(__name__) def get_next_url(response): link = response.headers[&amp;#39;link&amp;#39;] if link is None: return None links = link.split(&amp;#39;,&amp;#39;) for link in links: if &amp;#39;rel=&amp;#34;next&amp;#34;&amp;#39; in link: return link[link.find(&amp;#39;&amp;lt;&amp;#39;) + 1:link.find(&amp;#39;&amp;gt;&amp;#39;)] return None def get_items(token): url = &amp;#39;https://qiita.com/api/v2/authenticated_user/items&amp;#39; headers = {&amp;#39;Authorization&amp;#39;: &amp;#39;Bearer {}&amp;#39;.format(token)} items = [] while True: response = requests.</description>
     </item>
     
@@ -62,7 +63,8 @@ QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp
       <pubDate>Fri, 06 Sep 2019 23:44:41 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/0008-fizzbuzz/</guid>
-      <description>FizzBuzzとは  エンジニアがテストコードでよく書くネタ。Wiki参照https://ja.wikipedia.org/wiki/Fizz_Buzz  Javaなら1行でシンプルに書ける。そうLambdaならね import java.util.stream.IntStream; public class FizzBuzz { public static void main(String[] args) { IntStream.rangeClosed(1, 100).forEach( i -&amp;gt; System.out.format(&amp;#34;%s%s%n&amp;#34;, (i%3 == 0 ? &amp;#34;Fizz&amp;#34; : &amp;#34;&amp;#34;), (i%5 == 0 ? &amp;#34;Buzz&amp;#34; : (i%3 == 0 ? &amp;#34;&amp;#34; : i)) ) ); } } </description>
+      <description> FizzBuzzとは  エンジニアがテストコードでよく書くネタ。Wiki参照
+https://ja.wikipedia.org/wiki/Fizz_Buzz  Javaなら1行でシンプルに書ける。そうLambdaならね import java.util.stream.IntStream; public class FizzBuzz { public static void main(String[] args) { IntStream.rangeClosed(1, 100).forEach( i -&amp;gt; System.out.format(&amp;#34;%s%s%n&amp;#34;, (i%3 == 0 ? &amp;#34;Fizz&amp;#34; : &amp;#34;&amp;#34;), (i%5 == 0 ? &amp;#34;Buzz&amp;#34; : (i%3 == 0 ? &amp;#34;&amp;#34; : i)) ) ); } } </description>
     </item>
     
     <item>
@@ -71,7 +73,13 @@ QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp
       <pubDate>Fri, 06 Sep 2019 21:38:30 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/0007-codecommit/</guid>
-      <description>Codeシリーズはまずは使ってみる！ 概要（最低限）  ソースコードを管理するGitリポジトリサービス サードパーティ(SourceTreeなど)利用可能 プルリクエスト機能が利用可能  リポジトリの作成  リポジトリ名を入れて、作成ボタン ＞ 完成！！ はじめにマネジメントコンソールでCodeCommitを選択しリポジトリを作成します。 名前を選択するだけ、簡単ですね。   次にgitを使う端末で設定をしていきます。 今回はAWS CLIを設定していることが前提になります。  git config --global credential.helper &amp;#39;!aws --region ap-northeast-1 codecommit credential-helper $@&amp;#39; git config --global credential.UseHttpPath true git clone [URLのクローン] コミット&amp;amp;プッシュしてみる  通常のgitと同様の利用方法が使えることを確認します。  $ echo &amp;#34;hello codecommit!&amp;#34; &amp;gt; README.md $ git add -A $ git commit -m &amp;#34;add readme&amp;#34; $ git push origin master  コミットされたことを確認しました。  プルリクエストしてみる  ブランチを作成しファイルを修正、コミット%プッシュします。  (master) $ git checkout -b f1 (f1) $ echo &amp;#34;f1 add&amp;#34; &amp;gt;&amp;gt; README.</description>
+      <description>Codeシリーズはまずは使ってみる！ 
+AWSにはCodeXXXと名前がついているDeveloperツールがいくつかあります。
+それらは単体でも使えますが、組み合わせて利用することが多いです。
+↓
+難しく考えず手を動かすことで、手っ取り早く感覚を掴んでいくのが学習しやすいです
+本記事では、リポジトリの作成、コミット&amp;amp;プッシュ、プルリクエストの3つを動かして行きます
+概要（最低限）  ソースコードを管理するGitリポジトリサービス サードパーティ(SourceTreeなど)利用可能 プルリクエスト機能が利用可能  リポジトリの作成  リポジトリ名を入れて、作成ボタン ＞ 完成！！ はじめにマネジメントコンソールでCodeCommitを選択しリポジトリを作成します。 名前を選択するだけ、簡単ですね。   次にgitを使う端末で設定をしていきます。 今回はAWS CLIを設定していることが前提になります。  git config --global credential.helper &amp;#39;!aws --region ap-northeast-1 codecommit credential-helper $@&amp;#39; git config --global credential.UseHttpPath true git clone [URLのクローン] コミット&amp;amp;プッシュしてみる  通常のgitと同様の利用方法が使えることを確認します。  $ echo &amp;#34;hello codecommit!&amp;#34; &amp;gt; README.md $ git add -A $ git commit -m &amp;#34;add readme&amp;#34; $ git push origin master  コミットされたことを確認しました。  プルリクエストしてみる  ブランチを作成しファイルを修正、コミット%プッシュします。  (master) $ git checkout -b f1 (f1) $ echo &amp;#34;f1 add&amp;#34; &amp;gt;&amp;gt; README.</description>
     </item>
     
     <item>
@@ -89,7 +97,7 @@ QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp
       <pubDate>Sun, 01 Sep 2019 09:17:57 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/0005-dynamodb-ttl/</guid>
-      <description>TTLとは  レコード毎にデータの有効期限を指定でき、その有効期限を過ぎるとデータが自動削除される機能です  利用例  低アクセスデータをアーカイブTBLへ移動  メインTBLと同定義、キャパシティーだけ下げてOLDデータを保存   低アクセスデータを削除  削除時にトリガーして、LOGを残す   トリガーさせるにはStreamの有効化が必要  TTL詳細  TTL の有効化  カラムで指定した有効期限を過ぎると、自動でデータが消える 変更が完全に処理されるまでに最大で 1 時間かかる   TTL 属性  項目の TTL タイムスタンプを保存する DynamoDB 属性の名前   有効期限はNumber型のエポック時間(Unixtime（ミリ秒無し）)を指定  現在の時間を、項目の Time To Live 属性に保存されている時間と比較 属性に保存されているエポック時間の値が現在の時間よりも少ない場合、項目は期限切れとマークされ、その後に削除される   データは48時間以内に削除される  リアルタイム性が重要でない場合（48時間後に消えてもOKな場合）は、とても有効な機能   スループットは消費せず、データ容量が減らせる  エポック時間形式(Unixtime)  コンピューターシステム上での時刻表現の一種 UNIXエポック、すなわち協定世界時 (UTC) での1970年1月1日午前0時0分0秒から形式的な経過秒数（すなわち、実質的な経過秒数から、その間に挿入された閏秒を引き、削除された閏秒を加えたもの） 現在時刻からエポック時間を取得する方法  Linux ターミナル: date +%s Python: import time; long(time.</description>
+      <description>TTLとは  レコード毎にデータの有効期限を指定でき、その有効期限を過ぎるとデータが自動削除される機能です  利用例  低アクセスデータをアーカイブTBLへ移動  メインTBLと同定義、キャパシティーだけ下げてOLDデータを保存  低アクセスデータを削除  削除時にトリガーして、LOGを残す  トリガーさせるにはStreamの有効化が必要  TTL詳細  TTL の有効化  カラムで指定した有効期限を過ぎると、自動でデータが消える 変更が完全に処理されるまでに最大で 1 時間かかる  TTL 属性  項目の TTL タイムスタンプを保存する DynamoDB 属性の名前  有効期限はNumber型のエポック時間(Unixtime（ミリ秒無し）)を指定  現在の時間を、項目の Time To Live 属性に保存されている時間と比較 属性に保存されているエポック時間の値が現在の時間よりも少ない場合、項目は期限切れとマークされ、その後に削除される  データは48時間以内に削除される  リアルタイム性が重要でない場合（48時間後に消えてもOKな場合）は、とても有効な機能  スループットは消費せず、データ容量が減らせる  エポック時間形式(Unixtime)  コンピューターシステム上での時刻表現の一種 UNIXエポック、すなわち協定世界時 (UTC) での1970年1月1日午前0時0分0秒から形式的な経過秒数（すなわち、実質的な経過秒数から、その間に挿入された閏秒を引き、削除された閏秒を加えたもの） 現在時刻からエポック時間を取得する方法  Linux ターミナル: date +%s Python: import time; long(time.time()) Java: System.currentTimeMillis() / 1000L JavaScript: Math.</description>
     </item>
     
     <item>
@@ -98,7 +106,7 @@ QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp
       <pubDate>Sat, 31 Aug 2019 23:56:43 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/2019-08-31/</guid>
-      <description>Sparse Indexesとは  DynamoDBのデータ抽出アプローチのテクニックの１つ 特定Itemにしか設定していない項目にGSIを含めることでプライマリーキー、ソートキー以外のキーでデータ抽出を容易に 以下の悩みを解決（プライマリーキー、ソートキー以外のキーでデータ抽出）  scanだと高コスト、キーで検索しても高コスト、フィルターだとキー検索とコスト一緒    サンプル: gameから最優秀賞を取得 初期テーブル  game単位で最優秀スコアのデータを取得したい scoreの最優秀をawdという項目を用意。対象以外は項目を設定しない   awdを含めたグローバルセカンダリインデックスを作成 GSIを検索  最優秀賞が設定されている項目が少ないため、VIEWが出来た時点で絞り込まれている scanしても低コスト！←今回の一番のポイント  aws dynamodb scan --table-name game --index-name name-awd-index { &amp;#34;Count&amp;#34;: 1, &amp;#34;Items&amp;#34;: [ { &amp;#34;score&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;3&amp;#34; }, &amp;#34;id&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;user3&amp;#34; }, &amp;#34;awd&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;cp&amp;#34; }, &amp;#34;name&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;game1&amp;#34; } } ], &amp;#34;ScannedCount&amp;#34;: 1, &amp;#34;ConsumedCapacity&amp;#34;: null } </description>
+      <description> Sparse Indexesとは  DynamoDBのデータ抽出アプローチのテクニックの１つ 特定Itemにしか設定していない項目にGSIを含めることでプライマリーキー、ソートキー以外のキーでデータ抽出を容易に 以下の悩みを解決（プライマリーキー、ソートキー以外のキーでデータ抽出）  scanだと高コスト、キーで検索しても高コスト、フィルターだとキー検索とコスト一緒   サンプル: gameから最優秀賞を取得 初期テーブル  game単位で最優秀スコアのデータを取得したい scoreの最優秀をawdという項目を用意。対象以外は項目を設定しない   awdを含めたグローバルセカンダリインデックスを作成 GSIを検索  最優秀賞が設定されている項目が少ないため、VIEWが出来た時点で絞り込まれている scanしても低コスト！←今回の一番のポイント  aws dynamodb scan --table-name game --index-name name-awd-index { &amp;#34;Count&amp;#34;: 1, &amp;#34;Items&amp;#34;: [ { &amp;#34;score&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;3&amp;#34; }, &amp;#34;id&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;user3&amp;#34; }, &amp;#34;awd&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;cp&amp;#34; }, &amp;#34;name&amp;#34;: { &amp;#34;S&amp;#34;: &amp;#34;game1&amp;#34; } } ], &amp;#34;ScannedCount&amp;#34;: 1, &amp;#34;ConsumedCapacity&amp;#34;: null } </description>
     </item>
     
     <item>
@@ -107,7 +115,7 @@ QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp
       <pubDate>Thu, 29 Aug 2019 23:53:34 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/2019-08-29/</guid>
-      <description>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い   key-schema  HASH  パーティションキー   RANGE  ソートキー     provisioned-throughput  ReadCapacityUnits  読み込みスループット   WriteCapacityUnits  書き込みスループット      put-item aws dynamodb put-item \  --table-name mails \  --item &amp;#39;{&amp;#34;id&amp;#34;: {&amp;#34;S&amp;#34;: &amp;#34;testid1&amp;#34;},&amp;#34;Name&amp;#34;: {&amp;#34;S&amp;#34;: &amp;#34;Alice&amp;#34;},&amp;#34;mail&amp;#34;: {&amp;#34;S&amp;#34;: &amp;#34;alice@test.</description>
+      <description>Create Table (sample:mails) aws dynamodb create-table --table-name mails \ --attribute-definitions \  AttributeName=id,AttributeType=S \  AttributeName=Name,AttributeType=S \ --key-schema \  AttributeName=id,KeyType=HASH \  AttributeName=Name,KeyType=RANGE \ --provisioned-throughput \  ReadCapacityUnits=2,WriteCapacityUnits=2  attribute-definitions  プライマリーキーとソートキーを定義する それ以外のキーはテーブル作成時には定義しなくても良い  key-schema  HASH パーティションキー RANGE ソートキー  provisioned-throughput  ReadCapacityUnits 読み込みスループット WriteCapacityUnits 書き込みスループット   put-item aws dynamodb put-item \  --table-name mails \  --item &amp;#39;{&amp;#34;id&amp;#34;: {&amp;#34;S&amp;#34;: &amp;#34;testid1&amp;#34;},&amp;#34;Name&amp;#34;: {&amp;#34;S&amp;#34;: &amp;#34;Alice&amp;#34;},&amp;#34;mail&amp;#34;: {&amp;#34;S&amp;#34;: &amp;#34;alice@test.mail&amp;#34;} }&amp;#39; \  --return-consumed-capacity TOTAL { &amp;#34;ConsumedCapacity&amp;#34;: { &amp;#34;CapacityUnits&amp;#34;: 1.</description>
     </item>
     
     <item>
@@ -118,7 +126,7 @@ QIITA_TOKEN=XXXXXXXXX # いいね、記事タイトル→CSV形式 curl -sH &amp
       <guid>https://icck.github.io/posts/2019-08-28/</guid>
       <description>完成したもの まずは動いているものは以下になります。
 https://icck.github.io/search/
-作業手順  手順を順に記載していきます。以下の記事を参考にさせていただきました。 http://rs.luminousspice.com/hugo-site-search/ https://snap.textgh.org/post/full-text-search-in-hugo/  インデックスファイルのテンプレート $ mkdir ./layouts/js $ touch ./layouts/js/single.html var data = [{{ range $index, $page := where .Site.Pages &amp;#34;Section&amp;#34; &amp;#34;posts&amp;#34;}} {{ if ne $index 0 }},{{ end }}{ url: &amp;#34;{{ $page.Permalink }}&amp;#34;, title: &amp;#34;{{ $page.Title }}&amp;#34;, content: &amp;#34;{{ .PlainWords }}&amp;#34; }{{ end }}]  インデックスファイルを生成する空の投稿 $ hugo new pages/indexjs.md --- date: 2019-08-28T21:50:35+09:00 type: &amp;#34;js&amp;#34; url: &amp;#34;index.js&amp;#34; --- 検索ページの作成 検索ページテンプレートの作成 $ mkdir ./layouts/search/ $ touch .</description>
+作業手順  手順を順に記載していきます。以下の記事を参考にさせていただきました。 http://rs.luminousspice.com/hugo-site-search/ https://snap.textgh.org/post/full-text-search-in-hugo/  インデックスファイルのテンプレート $ mkdir ./layouts/js $ touch ./layouts/js/single.html var data = [{{ range $index, $page := where .Site.Pages &amp;#34;Section&amp;#34; &amp;#34;posts&amp;#34;}} {{ if ne $index 0 }},{{ end }}{ url: &amp;#34;{{ $page.Permalink }}&amp;#34;, title: &amp;#34;{{ $page.Title }}&amp;#34;, content: &amp;#34;{{ .PlainWords }}&amp;#34; }{{ end }}]  インデックスファイルを生成する空の投稿 $ hugo new pages/indexjs.md --- date: 2019-08-28T21:50:35+09:00 type: &amp;#34;js&amp;#34; url: &amp;#34;index.js&amp;#34; --- 検索ページの作成 検索ページテンプレートの作成 $ mkdir .</description>
     </item>
     
     <item>
@@ -127,7 +135,7 @@ https://icck.github.io/search/
       <pubDate>Mon, 26 Aug 2019 01:14:23 +0900</pubDate>
       
       <guid>https://icck.github.io/posts/000/</guid>
-      <description>Hugoの使い方を今後のブログ更新のために Hugoでブログを書いていく上で、運用方法をメモしていこうと思います。 インストール等は気が向いたときに
+      <description> Hugoの使い方を今後のブログ更新のために Hugoでブログを書いていく上で、運用方法をメモしていこうと思います。 インストール等は気が向いたときに
 Local環境を起動 $ hugo server --theme=hugo-theme-nix --buildDrafts --watch 記事の作成 $ hugo new post/test.md --- title: &amp;#34;test&amp;#34; date: 2019-08-26T01:14:23+09:00 draft: true ---  title:記事のタイトルに修正 date:作成時刻のため、そのまま draft:trueが非公開。falseに変更し公開  Sample --- title: &amp;#34;test&amp;#34; date: 2019-08-26T01:14:23+09:00 draft: false --- ## ここにマークダウンで本文を記載 githubへpush ./deploy.sh </description>
     </item>
     
