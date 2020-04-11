@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fish on icck&#39;s Blog</title>
+    <link>https://icck.github.io/tags/fish/</link>
+    <description>Recent content in fish on icck&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>js</language>
+    <lastBuildDate>Mon, 02 Sep 2019 02:17:32 +0900</lastBuildDate>
+    
+	<atom:link href="https://icck.github.io/tags/fish/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>fishでaws-cliの補完機能を使う</title>
+      <link>https://icck.github.io/posts/0006-fish-aws-cli/</link>
+      <pubDate>Mon, 02 Sep 2019 02:17:32 +0900</pubDate>
+      
+      <guid>https://icck.github.io/posts/0006-fish-aws-cli/</guid>
+      <description>bash -&amp;gt; fishに変更した場合、aws-cliの補完機能を有効にする方法 # 位置を特定します $ which aws_completer # 存在しない場合は作成します $ vim ~/.config/fish/config.fish # aws_completerのパスはwhichで調べたパスに適時変更しconfig.fishに追記して保存します $ complete -c aws -f -a &amp;#39;(begin; set -lx COMP_SHELL fish; set -lx COMP_LINE (commandline); /usr/local/bin/aws_completer; end)&amp;#39; #確認 $ aws s + tab さいごに これで、良いfish Lifeを過ごせます。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Qiita API②いいねとVIEW数をLambdaで取得してS3へ保存 &middot; icck&#39;s Blog </title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.58.3" />
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://icck.github.io/css/nix.css">
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Inconsolata%7COpen+Sans%7CConcert+One" rel="stylesheet">
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-126514155-2', 'auto');
+	  ga('send', 'pageview');
+
+</script>
+
+
+
+
+    </head>
+
+    <body>
+        <header>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" id="green-terminal" href=https://icck.github.io>icck@developer ~ $</a>
+		</div>
+
+		
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="https://icck.github.io">/home/icck</a>
+				</li>
+				
+				
+				<li class="dropdown">
+                    
+            		<a href="/about">~/about</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/posts">~/posts</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/tags">~/tags</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="/search">~/search</a>
+            		
+        		</li>
+        		
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+
+        <div class="container wrapper">
+            <h1><a href="https://icck.github.io/posts/0010-qiita-python/">Qiita API②いいねとVIEW数をLambdaで取得してS3へ保存</a></h1>
+            <span class="post-date">Sep 17, 2019 </span>
+            <div class="post-content">
+                
+
+<p>前回投稿した<a href="https://icck.github.io/posts/0009-qiita-curl/">「Qiita API でいいねとVIEW数をCurlで取得する方法」</a>を利用し、Lambdaで実行してs3にjsonファイルとして格納してみようと思います。</p>
+
+<p><img src="/posts/0010/1.png" alt="1" /></p>
+
+<h1 id="code">Code</h1>
+
+<p>以下のコードを実行しs3に格納していきます。<br>
+※事前にバケットは作成しておきます。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> csv
+<span style="color:#f92672">import</span> json
+<span style="color:#f92672">import</span> logging
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> sys
+<span style="color:#f92672">import</span> boto3
+
+<span style="color:#f92672">import</span> requests
+
+formatter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(asctime)s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(name)-12s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(levelname)-8s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>
+logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>WARNING, format<span style="color:#f92672">=</span>formatter)
+logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_next_url</span>(response):
+
+    link <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>headers[<span style="color:#e6db74">&#39;link&#39;</span>]
+    <span style="color:#66d9ef">if</span> link <span style="color:#f92672">is</span> None:
+        <span style="color:#66d9ef">return</span> None
+
+    links <span style="color:#f92672">=</span> link<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)
+
+    <span style="color:#66d9ef">for</span> link <span style="color:#f92672">in</span> links:
+
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;rel=&#34;next&#34;&#39;</span> <span style="color:#f92672">in</span> link:
+            <span style="color:#66d9ef">return</span> link[link<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;&lt;&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:link<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;&gt;&#39;</span>)]
+    <span style="color:#66d9ef">return</span> None
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_items</span>(token):
+
+    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://qiita.com/api/v2/authenticated_user/items&#39;</span>
+    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">&#39;Bearer {}&#39;</span><span style="color:#f92672">.</span>format(token)}
+
+    items <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">while</span> True:
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
+        response<span style="color:#f92672">.</span>raise_for_status()
+        items<span style="color:#f92672">.</span>extend(json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text))
+        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;GET {}&#39;</span><span style="color:#f92672">.</span>format(url))
+
+        url <span style="color:#f92672">=</span> get_next_url(response)
+        <span style="color:#66d9ef">if</span> url <span style="color:#f92672">is</span> None:
+            <span style="color:#66d9ef">break</span>
+
+    <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> items:
+
+        <span style="color:#75715e"># ビュー数</span>
+        url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://qiita.com/api/v2/items/{}&#39;</span><span style="color:#f92672">.</span>format(item[<span style="color:#e6db74">&#39;id&#39;</span>])
+        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;GET {}&#39;</span><span style="color:#f92672">.</span>format(url))
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
+        response<span style="color:#f92672">.</span>raise_for_status()
+        item[<span style="color:#e6db74">&#39;page_views_count&#39;</span>] <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)[<span style="color:#e6db74">&#39;page_views_count&#39;</span>]
+
+        <span style="color:#75715e"># ストック数</span>
+        url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://qiita.com/api/v2/items/{}/stockers&#39;</span><span style="color:#f92672">.</span>format(item[<span style="color:#e6db74">&#39;id&#39;</span>])
+        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;GET {}&#39;</span><span style="color:#f92672">.</span>format(url))
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
+        response<span style="color:#f92672">.</span>raise_for_status()
+        users <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)
+        <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> users:
+            logger<span style="color:#f92672">.</span>info({
+                <span style="color:#e6db74">&#39;id&#39;</span>: user[<span style="color:#e6db74">&#39;id&#39;</span>],
+                <span style="color:#e6db74">&#39;name&#39;</span>: user[<span style="color:#e6db74">&#39;name&#39;</span>]
+                })
+        item[<span style="color:#e6db74">&#39;stocks_count&#39;</span>] <span style="color:#f92672">=</span> len(users)
+
+    <span style="color:#66d9ef">return</span> items
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_s3</span>(items):
+    s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;s3&#39;</span>)
+    bucket_name <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>Bucket(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;BUCKET_NAME&#39;</span>])
+    json_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;output/sample.json&#39;</span>
+
+    s3<span style="color:#f92672">.</span>put_object(Bucket<span style="color:#f92672">=</span>bucket_name, Key<span style="color:#f92672">=</span>json_key, Body<span style="color:#f92672">=</span>json<span style="color:#f92672">.</span>dumps(items,ensure_ascii<span style="color:#f92672">=</span>False))
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
+    TOKEN <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;TOKEN&#39;</span>]
+    items <span style="color:#f92672">=</span> get_items(TOKEN)
+    upload_s3(items)
+    <span style="color:#66d9ef">return</span> items</code></pre></div>
+
+<h1 id="実行後-バケット確認">実行後、バケット確認</h1>
+
+<p>JSONファイルが保存されていることを確認しました。</p>
+
+<p><img src="/posts/0010/2.png" alt="2" /></p>
+
+<h1 id="さいごに">さいごに</h1>
+
+<ul>
+<li>pythonの<code>requests</code>を使ってAPIからデータを取得できました。</li>
+<li>今後は、以下に発展させていこうと思います。
+
+<ul>
+<li>ファイル名にタイムスタンプの追加</li>
+<li>CloudWatchから定期的に実行</li>
+<li>収集したログの可視化</li>
+</ul></li>
+</ul>
+
+            </div>
+            
+            <div class="post-comments">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-icck-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+            <div class="push"></div>
+        </div>
+        <footer class="footer text-center">
+<p>Copyright &copy; 2020 Issei Komori -
+<span class="credit">
+	Powered by
+	<a target="_blank" href="https://gohugo.io">Hugo</a>
+	and
+	<a target="_blank" href="https://github.com/LordMathis/hugo-theme-nix/">Nix</a> theme.
+</span>
+</p>
+</footer>
+
+
+    </body>
