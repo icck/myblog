@@ -21,8 +21,8 @@ menu: "main"
   ],
   "スキル": [
     "AWS",
-    "Java",
-    "SQL-Oracle"
+    "Java": "Spring Boot",
+    "SQL": "Oracle"
   ],
   "SNS": [
     "Github: https://twitter.com/icckx",

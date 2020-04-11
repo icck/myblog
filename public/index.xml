@@ -145,7 +145,7 @@ Local環境を起動 $ hugo server --theme=hugo-theme-nix --buildDrafts --watch 
       <pubDate>Mon, 02 Sep 2019 23:34:26 +0900</pubDate>
       
       <guid>https://icck.github.io/about/</guid>
-      <description>About Me { &amp;quot;名前&amp;quot;: &amp;quot;Issei Komori&amp;quot;, &amp;quot;よく書くこと&amp;quot;: [ &amp;quot;AWS&amp;quot;, &amp;quot;気になったツール&amp;quot; ], &amp;quot;資格&amp;quot;: [ &amp;quot;AWS Certified Solutions Architect – Associate&amp;quot;, &amp;quot;AWS Certified Developer - Associate&amp;quot;, &amp;quot;Oracle Silver&amp;quot;, &amp;quot;Java Silver&amp;quot; ], &amp;quot;スキル&amp;quot;: [ &amp;quot;AWS&amp;quot;, &amp;quot;Java&amp;quot;, &amp;quot;SQL-Oracle&amp;quot; ], &amp;quot;SNS&amp;quot;: [ &amp;quot;Github: https://twitter.com/icckx&amp;quot;, &amp;quot;Qiita: https://qiita.com/icck&amp;quot;, &amp;quot;Twitter: @icckx&amp;quot; ] }  --</description>
+      <description>About Me { &amp;quot;名前&amp;quot;: &amp;quot;Issei Komori&amp;quot;, &amp;quot;よく書くこと&amp;quot;: [ &amp;quot;AWS&amp;quot;, &amp;quot;気になったツール&amp;quot; ], &amp;quot;資格&amp;quot;: [ &amp;quot;AWS Certified Solutions Architect – Associate&amp;quot;, &amp;quot;AWS Certified Developer - Associate&amp;quot;, &amp;quot;Oracle Silver&amp;quot;, &amp;quot;Java Silver&amp;quot; ], &amp;quot;スキル&amp;quot;: [ &amp;quot;AWS&amp;quot;, &amp;quot;Java&amp;quot;: &amp;quot;Spring Boot&amp;quot;, &amp;quot;SQL&amp;quot;: &amp;quot;Oracle&amp;quot; ], &amp;quot;SNS&amp;quot;: [ &amp;quot;Github: https://twitter.com/icckx&amp;quot;, &amp;quot;Qiita: https://qiita.com/icck&amp;quot;, &amp;quot;Twitter: @icckx&amp;quot; ] }  --</description>
     </item>
     
     <item>
