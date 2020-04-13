@@ -23,9 +23,9 @@ menu: "main"
     "stackshare.io": "https://stackshare.io/icck/my-stack",
   ],
   "SNS": [
-    "Github": "https://twitter.com/icckx",
+    "Github": "https://github.com/icck",
     "Qiita": "https://qiita.com/icck",
-    "Twitter": "@icckx"
+    "Twitter": "https://twitter.com/icckx"
   ]
 }
 ~~~
