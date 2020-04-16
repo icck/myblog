@@ -35,3 +35,16 @@ $ npm -v
 6.14.4
 
 {{< /highlight >}}
+
+## おまけ（yarnをUpgradeしてみる）
+{{< highlight js >}}
+$ yarn -v
+1.13.0
+
+$ npm uninstall yarn -g
+$ npm install yarn -g
+
+$ yarn -v
+1.22.4
+
+{{< /highlight >}}
