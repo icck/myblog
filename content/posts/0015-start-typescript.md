@@ -7,21 +7,15 @@ tags: ["TypeScript"]
 weight: 10
 ---
 
-# Table of Contents
-  * [Chapter 1](#chapter-1)
-  * [Chapter 2](#chapter-2)
-  * [Chapter 3](#chapter-3)
+# やること
+- TypeScriptをインストールしてみる
+
+# 事前準備（環境）
+- Windows 10(1903)
+- Node.js(v12.16.2)
 
 
-## Chapter 1 <a id="chapter-1"></a>
-
-## Chapter 2 <a id="chapter-2"></a>
-
-## Chapter 3 <a id="chapter-3"></a>
-
-{{< highlight bash >}}
+# TypeScriptをインストールしてみる
+{{< highlight js >}}
+$ npm -g install typescript
 {{< /highlight >}}
-
-![Minion](https://octodex.github.com/images/minion.png)
-
-https://learn.netlify.com/en/cont/markdown/
