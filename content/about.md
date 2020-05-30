@@ -8,7 +8,7 @@ menu: "main"
 # About Me
 ~~~
 {
-  "名前": "Issei Komori",
+  "名前": "Issei Komori ",
   "よく書くこと": [
     "AWS",
     "気になったツール"
